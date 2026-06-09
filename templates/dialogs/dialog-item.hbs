@@ -1,0 +1,68 @@
+<form class="{{cssClass}} {{object.sheettype}}" autocomplete="off">
+
+    <div class="dialog-area">
+        <div class="headlineGroup splatFont">{{localize "wod.dice.rollof"}} {{object.name}}</div>
+    </div>
+
+    <div class="dialog-area">
+        <div class="infobox headline splatFont">{{localize "wod.dialog.dicepool"}}</div>
+        <div class="infobox">
+            {{object.attributeName}} ({{object.attributeValue}})
+            
+            {{#if (ne object.abilityName "")}}
+                + {{object.abilityName}} ({{object.abilityValue}})
+            {{/if}}
+            
+            {{#if (gt object.bonus 0)}} 
+                + {{object.bonus}}
+            {{/if}}
+        </div>
+        {{#if object.hasSpeciality}}
+            <div class="infobox headline splatFont">{{localize "wod.labels.specialty"}}</div>
+            <div class="clearareaBox infobox dialog-checkbox">
+                <div class="pullLeft"><input name="specialty" type="checkbox" {{isChecked object.useSpeciality}} /></div>
+                <div class="pullLeft">{{#if (ne object.specialityText "")}}{{object.specialityText}}{{else}}{{localize "wod.dialog.nonelisted"}}{{/if}}</div>
+            </div>
+        {{/if}}
+
+        <div class="clearareaBox infobox dialog-checkbox">
+            <div class="pullLeft"><input name="useWillpower" type="checkbox" {{isChecked object.useWillpower}} /></div>
+            <div class="pullLeft"><label for="useWillpower" class="dialog-casting-type-label">{{localize "wod.labels.usewillpower"}}</label></div>
+        </div>
+    </div>
+
+    <div class="dialog-area">
+        <div class="headline splatFont">{{localize "wod.labels.difficulty"}}</div>
+        <div class="infobox centerText">
+            
+            {{#numFromLoop config.lowestDifficulty 10}}
+                <button id="difficulty" class="button fullSplatColor pointer dialog-difficulty-button {{#if (eq ../object.difficulty this)}}active{{/if}}" value="{{this}}" data-index="{{this}}">{{this}}</button>
+            {{/numFromLoop}}
+        </div>
+    </div>
+
+    <div class="dialog-area">
+        {{#if (ne object.description "")}}
+            <div class="infobox">
+                <div class="clearareaBox">
+                    <label class="headline splatFont" for="data.system.description">{{localize "wod.labels.description"}}</label>
+                </div>
+                <div class="textarea">{{{object.description}}}</div>
+            </div>
+        {{/if}}
+        {{#if (ne object.details "")}}
+            <div class="infobox">
+                <div class="clearareaBox">
+                    <label class="headline splatFont" for="data.details">{{localize "wod.labels.details"}}</label>
+                </div>
+                <div class="textarea">{{{object.details}}}</div>
+            </div> 
+        {{/if}}   
+    </div>
+
+    <div class="centerText">
+        <button id="actionButton" class="button fullSplatColor pointer actionbutton dialog-two-button">{{localize "wod.dice.roll"}}</button>
+        <button id="closeButton" class="button fullSplatColor pointer closebutton dialog-two-button">{{localize "wod.dialog.close"}}</button>
+    </div>
+
+</form>

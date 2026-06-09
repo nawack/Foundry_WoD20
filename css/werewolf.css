@@ -1,0 +1,267 @@
+.werewolfDialog,
+.wod20.werewolf,
+.werewolfItem {
+  --main-full-color: var(--main-werewolf-color);
+  --main-mid-color: var(--main-werewolf-mid-color);
+  --main-dim-color: var(--main-werewolf-dim-color);
+  --color-shadow-primary: var(--main-werewolf-color);
+
+  /* Splat-specific font-size defaults (tweak per splat if needed) */
+  --wod-font-xxs: 0.4375rem;   /* 7px */
+  --wod-font-xs: 0.625rem;     /* 10px */
+  --wod-font-sm: 0.75rem;      /* 12px */
+  --wod-font-md: 0.875rem;     /* 14px */
+  --wod-font-base: 1rem;       /* 16px */
+  --wod-font-lg: 1.125rem;     /* 18px */
+  --wod-font-xl: 1.25rem;      /* 20px */
+  --wod-font-xxl: 1.5rem;      /* 24px */
+
+  /* Per-component overrides to preserve current hard-coded sizes in this splat */
+  --wod-font-sheet-headline: 1.875rem; /* 30px */
+  --wod-font-headline-text: 1.125rem; /* 18px */
+  /* .secondHeadlineTabs (was 18px) -> override xl */
+  --wod-font-xl: 1.125rem; /* 18px */
+}  
+
+.wod20.werewolf {
+  --sheet-background-color: var(--werewolf-page-background);
+}
+
+.wod20.werewolf .modern {
+  --main-wod-banner: var(--werewolf-banner-background);
+  --main-wod-banner-small: var(--werewolf-banner-small-background);
+}
+.werewolf .victorian {
+  --main-wod-banner: var(--werewolf-banner-background);
+  --main-wod-banner-small: var(--werewolf-banner-small-background);
+}
+.wod20.werewolf .darkages {
+  --main-wod-banner: var(--werewolf-banner-background);
+  --main-wod-banner-small: var(--werewolf-banner-small-background);
+}
+
+.wod20.werewolf:not(.noSplatFont) nav,
+.wod20.werewolf:not(.noSplatFont) .splatFont,
+.werewolfDialog:not(.noSplatFont) .splatFont,
+.werewolfItem:not(.noSplatFont) .splatFont {
+	  font-family: "werewolf", var(--main-font);
+}
+
+.wod20.werewolf:not(.noSplatFont) .sheet-headline {
+  font-size: var(--wod-font-sheet-headline);
+}
+
+.wod20.werewolf:not(.noSplatFont) .headlineList {
+	font-size: var(--wod-font-base);
+}
+
+.wod20.werewolf:not(.noSplatFont) .headlineText {
+  font-size: var(--wod-font-headline-text);
+}
+
+/* DIALOG */
+
+.werewolfDialog:not(.noSplatFont) .headline {
+  font-size: var(--wod-font-base);
+}
+
+/* CORE */
+
+.wod20.werewolf .ability-headlineWidth {
+	width: 	110px;
+}
+
+.wod20.werewolf span.supernaturalAttribute:nth-of-type(5n) {
+    margin-right: 0;
+}
+/* .wod20.werewolf span.supernaturalAttribute:nth-of-type(5n+1) {
+    margin-right: 10px;
+} */
+
+.wod20.werewolf:not(.noSplatFont) .secondHeadlineTabs {
+  font-size: var(--wod-font-xl);
+}
+
+/* SHAPECHANGE */
+
+.wod20.werewolf .shape-background {
+  background: url('../assets/img/werewolf/form/five_forms.jpg');
+  width: 86%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: grayscale(100%);
+  opacity: 0.2;
+  position: absolute;
+  margin-top: 30px;
+}
+
+.wod20.werewolf .shape-background.shape-apis,
+.wod20.werewolf .shape-background.shape-camazotz,
+.wod20.werewolf .shape-background.shape-grondr {
+  background: url('');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.wod20.werewolf .shape-background.shape-ajaba {
+  background: url('../assets/img/werewolf/form/forms_ajaba.webp');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.wod20.werewolf .shape-background.shape-ananasi {
+  background: url('../assets/img/werewolf/form/forms_ananasi.webp');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.wod20.werewolf .shape-background.shape-bastet {
+  background: url('../assets/img/werewolf/form/forms_bastet.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.wod20.werewolf .shape-background.shape-corax {
+  background: url('../assets/img/werewolf/form/forms_corax.webp');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.wod20.werewolf .shape-background.shape-gurahl {
+  background: url('../assets/img/werewolf/form/forms_gurahl.webp');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.wod20.werewolf .shape-background.shape-kitsune {
+  background: url('../assets/img/werewolf/form/forms_kitsune.webp');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.wod20.werewolf .shape-background.shape-mokole {
+  background: url('../assets/img/werewolf/form/forms_mokole.webp');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.wod20.werewolf .shape-background.shape-nagah {
+  background: url('../assets/img/werewolf/form/forms_nagah.webp');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.wod20.werewolf .shape-background.shape-nuwisha {
+  background: url('../assets/img/werewolf/form/forms_nuwisha.webp');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.wod20.werewolf .shape-background.shape-ratkin {
+  background: url('../assets/img/werewolf/form/forms_ratkin.webp');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.wod20.werewolf .shape-background.shape-rokea {
+  background: url('../assets/img/werewolf/form/forms_rokea.webp');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.wod20.werewolf .shape-area {
+  width: 100%;
+  height: 800px;
+}
+
+/* .wod20.werewolf .shape-selector {
+  width: 20%;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: var(--wod-font-lg);
+  font-weight: normal;
+} 
+
+.wod20.werewolf .shape-selector:hover {
+	background-color: var(--main-dim-color); 
+  color: #121212;  
+  cursor: pointer;
+}
+
+.wod20.werewolf .shape-selectortext {
+  width: 20%;
+  font-size: var(--wod-font-md);
+  font-weight: bold;
+  text-align: center;
+  margin-top: 100px;
+} */
+
+.wod20.werewolf .shape-selectortext.shape-ananasi,
+.wod20.werewolf .shape-selector.shape-ananasi,
+.wod20.werewolf .shape-selectortext.shape-camazotz,
+.wod20.werewolf .shape-selector.shape-camazotz {
+  width: 25%;
+}
+
+.wod20.werewolf .shape-selectortext.shape-corax,
+.wod20.werewolf .shape-selector.shape-corax,
+.wod20.werewolf .shape-selectortext.shape-mokole,
+.wod20.werewolf .shape-selector.shape-mokole,
+.wod20.werewolf .shape-selectortext.shape-ratkin,
+.wod20.werewolf .shape-selector.shape-ratkin,
+.wod20.werewolf .shape-selectortext.shape-apis ,
+.wod20.werewolf .shape-selector.shape-apis {
+  width: 33%;
+}
+
+/* END - Shapechange */
+
+/* START - Gift */
+
+.wod20 .gift-row {
+  display: flex;
+  height: 23px;
+  line-height: 23px;
+  margin-left: 13px;
+}
+
+.wod20 .gift-rollablerow {
+  display: flex;
+  height: 23px;
+  line-height: 23px;
+  margin-left: 13px;
+}
+
+.wod20 .gift-headlineBox {
+  width: 200px;
+}
+
+.wod20 .rites-headlineBox {
+  width: 230px;
+}
+
+.wod20 .gift-dicebox {
+  width: 100px;
+}
+
+.wod20 .power-valueBox {
+  width: 50px;
+}
+
+.wod20 .gift-row .gift-iconbox {
+  margin-left: 270px;
+}
+
+.wod20 .gift-rollablerow .gift-iconbox {
+  margin-left: 23px;
+}
+
+/* END - Gift */
+
+/* SETTINGS */
+
+.wod20.werewolf .secondHeadlineTabs {
+  width: 25%;
+}

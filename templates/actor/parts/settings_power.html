@@ -1,0 +1,90 @@
+<div style="margin-top:10px">&nbsp;</div>
+
+<div class="sheet-area flex-columns">
+
+    {{#if (eq actor.type config.sheettype.creature)}}
+
+        <div class="area-box flex-columns">
+            <div class="clearareaBox" style="min-height: 75px;">
+                <div class="pullLeft headlineNormal" style="line-height: 26px;">{{localize "wod.labels.settings.power.maxrating"}}</div>
+                <div class="pullLeft settings-verticalcenter bold" data-type="{{config.sheettype.mortal}}" style="width: 150px;">
+                    {{#if locked}}
+                        <input class="sheet-infoValues half" type="text" value="{{data.system.settings.powers.defaultmaxvalue}}" data-dtype="Number" readonly />
+                    {{else}}
+                        <select class="sheet-infoValues editable" name="system.settings.powers.defaultmaxvalue" data-source="setpowermaxsetting" data-type="{{config.sheettype.creature}}" data-dtype="Number">
+                            {{selectOptions listData.Level9Value selected=data.system.powers.defaultmaxvalue localize=false}}
+                        </select>
+                    {{/if}}
+                </div>				
+            </div>
+
+            <div class="clearareaBox information-area">{{localize "wod.labels.settings.power.maxratinghint"}}</div>
+        </div>
+
+    {{/if}}
+
+    {{#if (eqAny actor.type config.sheettype.mortal config.sheettype.creature)}}
+
+        <div class="clearareaBox row">
+            <label for="data.system.settings.powers.hasdisciplines" class="pullLeft headlineNormal" style="width: 200px;">{{localize "wod.labels.settings.hasdisciplines"}}</label>
+            <div class="switch headlineNormal bold pointer splatFont" data-source="powers" data-switchtype="hasdisciplines" data-type="{{config.sheettype.mortal}}">
+                {{#if data.system.settings.powers.hasdisciplines}}
+                    <i class="pointer fa-solid fa-toggle-on"></i>
+                {{else}}
+                    <i class="pointer fa-solid fa-toggle-off"></i>
+                {{/if}}
+            </div>
+        </div>
+
+        <div class="clearareaBox row">
+            <label for="data.system.settings.powers.hasgifts" class="pullLeft headlineNormal" style="width: 200px;">{{localize "wod.labels.settings.hasgifts"}}</label>
+            <div class="switch headlineNormal bold pointer splatFont" data-source="powers" data-switchtype="hasgifts" data-type="{{config.sheettype.mortal}}">
+                {{#if data.system.settings.powers.hasgifts}}
+                    <i class="pointer fa-solid fa-toggle-on"></i>
+                {{else}}
+                    <i class="pointer fa-solid fa-toggle-off"></i>
+                {{/if}}
+            </div>
+        </div>
+
+        <div class="clearareaBox row">
+            <label for="data.system.settings.powers.haspowers" class="pullLeft headlineNormal" style="width: 200px;">{{localize "wod.labels.settings.haspowers"}}</label>
+            <div class="switch headlineNormal bold pointer splatFont" data-source="powers" data-switchtype="haspowers" data-type="{{config.sheettype.mortal}}">
+                {{#if data.system.settings.powers.haspowers}}
+                    <i class="pointer fa-solid fa-toggle-on"></i>
+                {{else}}
+                    <i class="pointer fa-solid fa-toggle-off"></i>
+                {{/if}}
+            </div>
+        </div>
+
+        
+
+    {{/if}}    
+
+    {{#if (eqAny actor.type config.sheettype.mortal config.sheettype.creature config.sheettype.werewolf config.sheettype.changingbreed config.sheettype.exalted)}}
+        <div class="clearareaBox row">
+            <label for="data.system.settings.powers.hasnumina" class="pullLeft headlineNormal" style="width: 200px;">{{localize "wod.labels.settings.hasnumina"}}</label>
+            <div class="switch headlineNormal bold pointer splatFont" data-source="powers" data-switchtype="hasnumina" data-type="{{config.sheettype.mortal}}">
+                {{#if data.system.settings.powers.hasnumina}}
+                    <i class="pointer fa-solid fa-toggle-on"></i>
+                {{else}}
+                    <i class="pointer fa-solid fa-toggle-off"></i>
+                {{/if}}
+            </div>
+        </div>
+    {{/if}}
+
+    {{#if (eq actor.type config.sheettype.mage)}}
+        <div class="headlineGroup splatFont">{{localize "wod.labels.settings.permparadox"}}</div>
+        <div>
+            <input class="sheet-infoValues numberBox {{#if (eq locked false)}}editable{{/if}}" 
+                name="system.paradox.permanent" 
+                type="text" 
+                value="{{data.system.paradox.permanent}}"
+                data-name="data.system.paradox.permanent" 
+                data-dtype="Number" {{#if locked}}readonly{{/if}} />
+        </div>
+    {{/if}}		
+
+</div>

@@ -1,0 +1,64 @@
+<div class="pullLeft" style="display: flex; width: 320px;">
+    
+    <div class="pullLeft area-box">
+        <div class="bioInformationArea floating-label-group">
+            {{#if locked}}
+                <input class="sheet-infoValues" type="text" value="{{localize data.system.breed}}" autocomplete="off" autofocus required />
+            {{else}}
+                <select class="sheet-infoValues editable" name="system.breed" data-name="data.system.breed" data-dtype="String">
+                    {{selectOptions listData.BreedList selected=data.system.breed localize=false}}
+                </select>
+            {{/if}}
+            <span class="floating-label">{{localize "wod.bio.breed"}}</span>
+        </div>
+
+        <div class="bioInformationArea floating-label-group">
+            {{#if locked}}
+                <input class="sheet-infoValues" type="text" value="{{localize data.system.auspice}}" autocomplete="off" autofocus required />
+            {{else}}
+                <select class="sheet-infoValues editable" name="system.auspice" data-name="data.system.auspice" data-dtype="String">
+                    {{selectOptions listData.AuspiceList selected=data.system.auspice localize=false}}
+                </select>
+            {{/if}}
+            <span class="floating-label">{{localize "wod.bio.pryio"}}</span>
+        </div>
+
+        <div class="bioInformationArea floating-label-group">
+            {{#if locked}}
+                <input class="sheet-infoValues" type="text" value="{{localize data.system.tribe}}" autocomplete="off" autofocus required />
+            {{else}}
+                <select class="sheet-infoValues editable" name="system.tribe" data-name="data.system.tribe" data-dtype="String">
+                    {{selectOptions listData.TribeList selected=data.system.tribe localize=false}}
+                </select>
+            {{/if}}
+            <span class="floating-label">{{localize "wod.bio.tribe"}}</span>
+        </div>
+
+        <div class="bioInformationArea floating-label-group">
+            {{#if locked}}
+                <input class="sheet-infoValues" type="text" value="{{data.system.packname}}" autocomplete="off" autofocus required />
+            {{else}}
+                <input class="sheet-infoValues editable" name="system.packname" type="text" value="{{data.system.packname}}" data-name="data.system.packname" data-dtype="String" autocomplete="off" autofocus required />
+            {{/if}}
+            <span class="floating-label">{{localize "wod.bio.pride"}}</span>
+        </div>
+
+        <div class="bioInformationArea floating-label-group">
+            {{#if locked}}
+                <input class="sheet-infoValues" type="text" value="{{data.system.packtotem}}" autocomplete="off" autofocus required />
+            {{else}}
+                <input class="sheet-infoValues editable" name="system.packtotem" type="text" value="{{data.system.packtotem}}" data-name="data.system.packtotem" data-dtype="String" autocomplete="off" autofocus required />
+            {{/if}}
+            <span class="floating-label">{{localize "wod.bio.jamak"}}</span>
+        </div>
+
+        <div class="bioInformationArea floating-label-group">
+            {{#if locked}}
+                <input class="sheet-infoValues" type="text" value="{{data.system.yava}}" autocomplete="off" autofocus required />
+            {{else}}
+                <input class="sheet-infoValues editable" name="system.yava" type="text" value="{{data.system.yava}}" data-name="data.system.yava" data-dtype="String" autocomplete="off" autofocus required />
+            {{/if}}
+            <span class="floating-label">{{localize "wod.bio.yava"}}</span>
+        </div>
+    </div>    
+</div>

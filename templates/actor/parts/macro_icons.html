@@ -1,0 +1,31 @@
+{{#if (eq (checkSystemsetting "viewBiotabPermission") "full")}}
+    <div data-area="microicons headlineTabs" style="display: flex; flex-direction: column; justify-content: flex-start; flex-wrap: nowrap; flex-direction: column; justify-content: flex-start;">
+        {{#if (eqAny actor.type config.sheettype.werewolf config.sheettype.changingbreed)}}
+            {{#if (eq actor.type config.sheettype.werewolf)}}
+                <a class="macroBtn pointer" data-macroimage="true" data-rollfrenzy="true" data-type="{{actor.type}}" title="{{localize 'wod.dialog.checkfrenzy.headline'}}">{{> (dtSvgDie 'frenzy' actor.type actor.system.settings.variantsheet)}}</a>
+            {{/if}}
+
+            <a class="macroBtn pointer" data-macroimage="true" data-rollshapechange="true" data-type="{{actor.type}}" title="{{localize 'wod.dialog.shapechange.headline'}}">{{> (dtSvgDie 'shapechange' actor.type actor.system.settings.variantsheet)}}</a>
+
+            {{#if actor.system.settings.hasrage}}
+                <a class="macroBtn pointer" data-macroimage="true" data-rollremainactive="true" data-type="{{actor.type}}" title="{{localize 'wod.dice.rollingremainactive'}}">{{> (dtSvgDie 'remainactive' actor.type actor.system.settings.variantsheet)}}</a>
+            {{/if}}
+        {{/if}}
+
+        {{#if (eq actor.type config.sheettype.vampire)}}
+            {{#if (eq actor.system.advantages.virtues.selfcontrol.label "wod.advantages.virtue.selfcontrol")}}
+                <a class="macroBtn pointer" data-macroimage="true" data-rollfrenzy="true" data-type="{{config.sheettype.vampire}}" title="{{localize 'wod.dialog.checkfrenzy.headline'}}">{{> (dtSvgDie 'frenzy' actor.type actor.system.settings.variantsheet)}}</a>
+            {{/if}}
+        {{/if}}
+
+        {{#if (eq actor.type config.sheettype.mage)}}
+            <a class="macroBtn pointer" data-macroimage="true" data-rollaretecatsing="true"  data-type="{{config.sheettype.mage}}" title="{{localize 'wod.dialog.aretecasting.castspell'}}">{{> (dtSvgDie 'spellcasting' actor.type actor.system.settings.variantsheet)}}</a>
+        {{/if}}
+
+        <a class="macroBtn pointer" data-macroimage="true" data-rollinitiative="true" data-type="{{config.sheettype.mortal}}" title="{{localize 'wod.info.rollinititative'}} ({{#if (gt data.system.initiative.total -1)}}+{{else}}-{{/if}}{{data.system.initiative.total}})">{{> (dtSvgDie 'initiative' actor.type actor.system.settings.variantsheet)}}</a>
+        <a class="macroBtn pointer" data-macroimage="true" data-rollsoak="true" data-type="{{config.sheettype.mortal}}" title="{{localize 'wod.info.rollsoak'}}">{{> (dtSvgDie 'soak' actor.type actor.system.settings.variantsheet)}}</a>
+        <a class="macroBtn pointer" data-macroimage="true" data-rolldices="true" data-type="{{config.sheettype.mortal}}" title="{{localize 'wod.info.rolldice'}}">{{> (dtSvgDie 'd10' actor.type actor.system.settings.variantsheet)}}</a>
+    </div>
+    
+{{/if}}
+

@@ -1,0 +1,144 @@
+<i class="macroBtn pointer createicon fa-solid fa-square-plus item-create" title="{{localize 'wod.labels.add.item'}}" aria-hidden="true" data-itemtype="All" data-origin="gear"></i>
+
+<div class="sheet-area flex-columns">	
+	<div class="sheet-headline sheet-banner splatFont">
+		<span class="sheet-banner-text">{{localize "wod.gear.headline"}}</span>
+	</div>
+	
+	<div class="clearareaBox area-box">
+		<div>
+			{{#if locked}}
+				<div class="sheet-gearArea headlineNormal textarea">{{{data.system.gear}}}</div>
+			{{else}}
+				{{editor actor.system.gear target="system.gear" engine="prosemirror" button=false owner=owner editable=true}}
+			{{/if}}
+		</div>
+	</div>
+</div>
+
+<div class="sheet-headline sheet-banner splatFont">
+	<span class="sheet-banner-text">{{localize "wod.gear.money"}}</span>
+</div>
+
+<div class="sheet-area flex-columns" style="flex-flow: row nowrap;">	
+	<div class="clearareaBox">
+		<div class="pullLeft" style="display: flex;">
+			<div class="area-box">		
+
+				<div class="pullLeft bioInformationArea floating-label-group half">
+					{{#if locked}}
+						<input class="sheet-infoValues" type="text" value="{{data.system.money.carried}}" autocomplete="off" autofocus required />
+					{{else}}
+						<input class="sheet-infoValues editable" name="system.money.carried" type="text" value="{{data.system.money.carried}}" data-name="data.system.money.carried" data-dtype="Number" autocomplete="off" autofocus required />
+					{{/if}}
+					<span class="floating-label">{{localize "wod.gear.moneycarried"}}</span>
+				</div>
+
+				<div class="pullLeft bioInformationArea floating-label-group half">
+					{{#if locked}}
+						<input class="sheet-infoValues" type="text" value="{{data.system.money.bank}}" autocomplete="off" autofocus required />
+					{{else}}
+						<input class="sheet-infoValues editable" name="system.money.bank" type="text" value="{{data.system.money.bank}}" data-name="data.system.money.bank" data-dtype="Number" autocomplete="off" autofocus required />
+					{{/if}}
+					<span class="floating-label">{{localize "wod.gear.moneybank"}}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="sheet-headline sheet-banner splatFont">
+	<span class="sheet-banner-text">{{localize "wod.gear.otheritems"}}</span>
+</div>
+
+<div class="sheet-area flex-columns">    
+    <div class="area-box">
+
+		<div class="headlineRow headlineList splatFont gear-itemlist">
+			<div class="width-namebox">{{localize "wod.gear.name"}}</div>     
+			<div class="width-mediumbox">{{localize "wod.gear.type"}}</div>
+			<div class="width-abilitybox">{{localize "wod.dialog.dicepool"}}</div>
+			<div class="width-valuebox">{{localize "wod.combat.weapon.diff"}}</div>
+        </div>
+
+		<div>
+
+			{{#each (getItems actor) as |item id|}}
+
+				<div class="item-row-area gear-itemlist">
+					<div class="dragrow headlineNormal gear-itemlist" data-itemid="{{item._id}}">
+						<div class="width-iconbox draggable"><i class="icon fa-solid fa-grip-vertical"></i></div>
+
+						<div class="width-namebox {{#if item.system.isrollable}}vrollable{{/if}}" 
+								data-type="{{../actor.type}}"
+								data-object="{{item.type}}"
+								data-rollitem="true"
+								data-itemid="{{item._id}}">{{item.name}}</div>
+
+						<div class="width-mediumbox">{{localize item.system.type}}</div>
+
+						{{#if item.system.isrollable}}
+							<div class="width-abilitybox">
+								{{#if (eq item.type "Fetish")}}
+									{{#if ../actor.system.settings.hasgnosis}}
+										{{localize "wod.advantages.gnosis"}}
+									{{else}}
+										{{localize "wod.advantages.willpower"}}
+									{{/if}}
+								{{else}}
+									{{#if (ne item.system.dice1 "")}}{{localize (getAttributes item.system.dice1)}}{{/if}}
+									{{#if (ne item.system.dice2 "")}} + {{localize (getAbility item.system.dice2  ../actor)}}{{/if}}
+									{{#if (gt item.system.bonus 0)}} + {{item.system.bonus}}{{/if}}
+								{{/if}}
+							</div>
+							<div class="width-valuebox">
+								{{#if (eq item.system.difficulty "-1")}}
+									{{localize "wod.labels.varies"}}
+								{{else}}
+									{{item.system.difficulty}}
+								{{/if}}
+							</div>
+						{{else}}
+							<div class="width-abilitybox">&nbsp;</div>
+							<div class="width-valuebox">&nbsp;</div>
+						{{/if}}
+						
+					</div>
+					<div class="iconBox">
+
+						{{#if (isChecked item.system.isactive)}}
+							<i class="item-active pointer icon fa-solid fa-shield" name="item.system.isactive" type="checkbox" data-item-id="{{item._id}}" data-type="isactive"></i>
+						{{else}}
+							<i class="item-active pointer icon fa-duotone fa-solid fa-shield" name="item.system.isactive" type="checkbox" data-item-id="{{item._id}}" data-type="isactive"></i>
+						{{/if}}							
+
+						<a class="pointer send-chat" title="{{localize 'wod.labels.send'}}" data-itemid="{{item._id}}"><i class="icon fa-solid fa-comment-dots"></i></a>
+						
+						{{#if (eq ../locked false)}}
+							<a class="pointer item-edit" title="{{localize 'wod.labels.edit.device'}}" data-type="Item" data-item-id="{{item._id}}"><i class="icon fa-solid fa-pen-to-square"></i></a>
+							<a class="pointer item-delete" title="{{localize 'wod.labels.remove.device'}}" data-type="Item" data-item-id="{{item._id}}"><i class="icon fa-solid fa-trash-can"></i></a>
+						{{/if}}
+
+						{{#if (showToolTip item)}}
+							<i class="pointer icon collapsible button fa-solid fa-expand"
+									title="{{localize 'wod.labels.show.description'}}"
+									data-itemid="{{item._id}}"></i>
+						{{else}}
+							<i class="icon no-description-disabled fa-solid fa-solid fa-expand"></i>
+						{{/if}}
+
+						<a class="pointer" title="LANG: Menu" data-itemid="{{item._id}}"><i class="icon fa-solid fa-ellipsis-vertical"></i></a>
+					</div>																				
+				</div>	
+				<div class="description" data-itemid="{{item._id}}">
+
+					{{{getToolTip_v2 item.system.description item.system.details item.system.bonuslist ../actor}}}
+
+				</div>			
+				
+			{{/each}}
+
+		</div>
+	</div>
+</div>
+

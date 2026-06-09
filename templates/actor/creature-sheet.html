@@ -1,0 +1,194 @@
+<form class="{{cssClass}} flexcol {{#if locked}}locked{{/if}} {{getEra actor}}" autocomplete="off">
+
+	{{!-- Creature Sheet Header --}}
+	<div class="sheet-character">
+
+		{{!-- Always visible --}}
+		<header class="sheet-header">	
+							
+		</header>
+
+		<!-- Sheet part -->
+		<section class="sheet-body">
+
+			<!-- Menu -->
+			<div class="navigation pullLeft">
+				{{#if (not actor.limited)}}
+					<!-- Lock/Unlock -->
+					{{> "systems/worldofdarkness/templates/actor/parts/profile-img.html"}}	
+				{{/if}}
+
+				<!-- Navigation -->
+				{{> "systems/worldofdarkness/templates/actor/parts/navigation.html"}}
+			</div>
+
+			<div class="pullRight">
+				<!-- Macro icons -->
+				{{> "systems/worldofdarkness/templates/actor/parts/macro_icons.html"}}
+			</div>
+
+			<div class="centerText sheet-headline splatFont">
+				{{captilize (localize "wod.games.creature")}} {{#if (ne (checkSystemsetting "viewBiotabPermission") "mini")}}{{#if (ne actor.system.settings.variant 'general')}}({{localize (getProperty config.variant.creature actor.system.settings.variant)}}){{/if}}{{/if}}
+			</div>
+
+			<!-- Bio tab -->
+			<div class="tab bio sheet-inner-area" data-group="primary" data-tab="bio">
+
+				{{~> "systems/worldofdarkness/templates/actor/parts/bio.html"}} 	
+
+			</div>
+
+			<!-- Core Normal -->
+			<div class="tab core sheet-inner-area" data-group="primary" data-tab="core">
+
+				<section class="sheet-spec-body">
+
+					{{#if (ne actor.system.settings.variant 'spirit')}}
+						<!-- Core Attributes -->
+						<div class="sheet-area flex-columns">
+							{{> "systems/worldofdarkness/templates/actor/parts/attributes.html"}} 	
+						</div>
+
+						<!-- Core Abilities -->
+						<div class="sheet-area flex-columns">
+							{{> "systems/worldofdarkness/templates/actor/parts/abilities.html"}}
+						</div>
+					{{/if}}
+ 
+					<!-- Core Stats -->
+					<div class="sheet-area flex-columns">
+						{{> "systems/worldofdarkness/templates/actor/parts/creature/stats.html"}}						
+					</div>
+
+				</section>				
+				
+			</div>
+
+			{{!-- Combat Tab --}}
+			<div class="tab combat sheet-inner-area" data-group="primary" data-tab="combat">
+
+				{{> "systems/worldofdarkness/templates/actor/parts/combat.html"}}
+
+			</div>
+
+			{{!-- Gear Tab --}}
+			<div class="tab gear sheet-inner-area" data-group="primary" data-tab="gear">
+
+				{{~> "systems/worldofdarkness/templates/actor/parts/gear.html"}}
+
+			</div>
+
+			{{!-- Charm Tab --}}
+			<div class="tab discipline sheet-inner-area" data-group="primary" data-tab="charms">
+
+				<i class="macroBtn pointer createicon fa-solid fa-square-plus item-create" title="{{localize 'wod.labels.add.item'}}" aria-hidden="true" data-itemtype="All" data-origin="power"></i>
+
+				{{> "systems/worldofdarkness/templates/actor/parts/creature/charms.html"}}
+
+			</div>
+
+			{{!-- Gift Tab --}}
+			<div class="tab gift sheet-inner-area" data-group="primary" data-tab="gift">
+
+				<i class="macroBtn pointer createicon fa-solid fa-square-plus item-create" title="{{localize 'wod.labels.add.item'}}" aria-hidden="true" data-itemtype="All" data-origin="power"></i>
+
+				{{> "systems/worldofdarkness/templates/actor/parts/gifts.html"}}
+
+			</div>
+
+			{{!-- Discipline Tab --}}
+			<div class="tab discipline sheet-inner-area" data-group="primary" data-tab="discipline">
+
+				<i class="macroBtn pointer createicon fa-solid fa-square-plus item-create" title="{{localize "wod.labels.add.item"}}" aria-hidden="true" data-itemtype="All" data-origin="power"></i>
+
+				{{> "systems/worldofdarkness/templates/actor/parts/vampire/disciplines.html"}}
+
+			</div>
+
+			{{!-- Lore Tab --}}
+			<div class="tab lore sheet-inner-area" data-group="primary" data-tab="lore">
+
+				<i class="macroBtn pointer createicon fa-solid fa-square-plus item-create" title="{{localize "wod.labels.add.item"}}" aria-hidden="true" data-itemtype="All" data-origin="power"></i>
+
+				{{> "systems/worldofdarkness/templates/actor/parts/demon/lores.html"}}
+
+			</div>
+
+			{{!-- Power Tab --}}
+			<div class="tab power sheet-inner-area" data-group="primary" data-tab="power">
+
+				{{> "systems/worldofdarkness/templates/actor/parts/creature/power.html"}}
+
+			</div>
+
+			{{!-- Numina Tab --}}
+			<div class="tab numina sheet-inner-area" data-group="primary" data-tab="numina">
+
+				<i class="macroBtn pointer createicon fa-solid fa-square-plus item-create" title="{{localize "wod.labels.add.item"}}" aria-hidden="true" data-itemtype="All" data-origin="power"></i>
+
+				<div class="sheet-area flex-columns">
+					<div class="area-box">
+
+						<div class="sheet-headline sheet-banner splatFont" data-area="numina"><span class="sheet-banner-text">{{localize "wod.power.numinas"}}</span></div>
+
+						{{#each (getMainPowerList actor "wod.types.numina") as |item id|}}
+							{{> "systems/worldofdarkness/templates/actor/parts/mainpower_list.html" mainpower=item config=../config actor=../actor locked=../locked}}
+						{{/each}}
+					</div>
+				</div>
+
+				{{#if (gt (couintUnsortedMainPowerList actor "wod.types.numinapower") 0)}}
+
+					<div class="sheet-area unsorted-area flex-columns">
+						<div class="headlineNormal info-box">{{localize "wod.power.unsortednuminas"}}</div>
+
+						<div class="area-box">
+							{{#each (getUnsortedMainPowerList actor "wod.types.numinapower") as | item id|}}
+
+								<div class="row">
+									<div class="pullLeft headlineNormal width-namebox vrollable" 
+										data-type="{{../config.sheettype.mortal}}"
+										data-object="SortNuminaPower"
+										data-rollitem="true"
+										data-itemid="{{item._id}}">{{item.name}}</div>
+									
+									{{#if (eq ../locked false)}}
+										<div class="pullLeft power-iconbox">
+											<a class="item-delete" title="{{localize 'wod.labels.remove.numinapower'}}" data-type="Numina" data-item-id="{{item._id}}"><i class="icon fa-solid fa-trash-can"></i></a>
+										</div>
+									{{/if}}                    
+								</div>
+
+							{{/each}}
+						</div>
+					</div>
+				{{/if}}
+
+			</div>
+
+			{{!-- Notes Tab --}}
+			<div class="tab note sheet-inner-area" data-group="primary" data-tab="note">
+
+				{{> "systems/worldofdarkness/templates/actor/parts/notes.html"}}
+
+			</div>
+
+			<!-- Effect Tab -->
+			<div class="tab effect sheet-inner-area" data-group="primary" data-tab="effect">
+
+				{{> "systems/worldofdarkness/templates/actor/parts/effect.html"}} 	
+
+			</div>
+
+			{{!-- Settings Tab --}}
+			<div class="tab settings sheet-inner-area" data-group="primary" data-tab="settings">
+			
+				{{> "systems/worldofdarkness/templates/actor/parts/settings.html"}}
+				
+			</div>
+
+		</section>
+
+	</div>
+		
+</form>

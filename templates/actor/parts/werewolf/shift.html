@@ -1,0 +1,55 @@
+<div class="sheet-area flex-columns">  
+    <div class="shape-area">
+        <div class="sheet-headline sheet-banner splatFont"><span class="sheet-banner-text">{{localize "wod.tab.shapechange"}}</span></div>
+        <div>
+            <div class="pullLeft shape-selector thin-border-left {{#if (shifterHasForm actor 'homid')}}shape-selector-active{{/if}}" data-form="wod.shapes.homid">{{localize "wod.shapes.homid"}}</div>
+            <div class="pullLeft shape-selector thin-border-left {{#if (shifterHasForm actor 'glabro')}}shape-selector-active{{/if}}" data-form="wod.shapes.glabro">{{localize "wod.shapes.glabro"}}</div>
+            <div class="pullLeft shape-selector thin-border-left {{#if (shifterHasForm actor 'crinos')}}shape-selector-active{{/if}}" data-form="wod.shapes.crinos">{{localize "wod.shapes.crinos"}}</div>
+            <div class="pullLeft shape-selector thin-border-left {{#if (shifterHasForm actor 'hispo')}}shape-selector-active{{/if}}" data-form="wod.shapes.hispo">{{localize "wod.shapes.hispo"}}</div>
+            <div class="pullLeft shape-selector thin-border-left thin-border-right {{#if (shifterHasForm actor 'lupus')}}shape-selector-active{{/if}}" data-form="wod.shapes.lupus">{{localize "wod.shapes.lupus"}}</div>
+        </div>
+
+        <div>
+            <div class="pullLeft shape-background"></div>
+            <div>
+                <div class="pullLeft shape-selectortext {{#if (shifterHasForm actor 'homid')}}text-focus{{else}}text-unfocus{{/if}}">
+                    {{localize "wod.labels.nochange"}}
+                </div>
+                <div class="pullLeft shape-selectortext {{#if (shifterHasForm actor 'glabro')}}text-focus{{else}}text-unfocus{{/if}}">
+                    {{localize "wod.attributes.short.str"}} ({{getShifterAttrbuteBonus actor "glabro" "strength" true}})<br />
+                    {{localize "wod.attributes.short.sta"}} ({{getShifterAttrbuteBonus actor "glabro" "stamina" true}})<br />
+                    {{localize "wod.attributes.short.man"}} ({{getShifterAttrbuteBonus actor "glabro" "manipulation" true}})<br />
+                    {{#if (eq (checkSystemsetting "attributeSettings") "20th")}}{{localize "wod.attributes.short.app"}} ({{getShifterAttrbuteBonus actor "glabro" "appearance" true}})<br />{{/if}}
+                </div>
+                <div class="pullLeft shape-selectortext {{#if (shifterHasForm actor 'crinos')}}text-focus{{else}}text-unfocus{{/if}}">
+                    {{localize "wod.attributes.short.str"}} ({{getShifterAttrbuteBonus actor "crinos" "strength" true}})<br />
+                    {{localize "wod.attributes.short.dex"}} ({{getShifterAttrbuteBonus actor "crinos" "dexterity" true}})<br />
+                    {{localize "wod.attributes.short.sta"}} ({{getShifterAttrbuteBonus actor "crinos" "stamina" true}})<br />
+                    {{localize "wod.attributes.short.man"}} ({{getShifterAttrbuteBonus actor "crinos" "manipulation" true}})
+                    {{#if (eq (checkSystemsetting "attributeSettings") "20th")}}<br />{{localize "wod.attributes.short.app"}} ({{getShifterAttrbuteBonus actor "crinos" "appearance" true}}){{/if}}
+                </div>
+                <div class="pullLeft shape-selectortext {{#if (shifterHasForm actor 'hispo')}}text-focus{{else}}text-unfocus{{/if}}">
+                    {{localize "wod.attributes.short.str"}} ({{getShifterAttrbuteBonus actor "hispo" "strength" true}})<br />
+                    {{localize "wod.attributes.short.dex"}} ({{getShifterAttrbuteBonus actor "hispo" "dexterity" true}})<br />
+                    {{localize "wod.attributes.short.sta"}} ({{getShifterAttrbuteBonus actor "hispo" "stamina" true}})<br />
+                    {{localize "wod.attributes.short.man"}} ({{getShifterAttrbuteBonus actor "hispo" "manipulation" true}})
+                    {{#if (eq (checkSystemsetting "attributeSettings") "20th")}}<br />{{localize "wod.attributes.perception"}} {{else}}{{localize "wod.attributes.wits"}} {{/if}} {{lowercase (localize "wod.labels.difficulty")}} -1
+                </div>
+                <div class="pullLeft shape-selectortext {{#if (shifterHasForm actor 'lupus')}}text-focus{{else}}text-unfocus{{/if}}">
+                    {{localize "wod.attributes.short.str"}} ({{getShifterAttrbuteBonus actor "lupus" "strength" true}})<br />
+                    {{localize "wod.attributes.short.dex"}} ({{getShifterAttrbuteBonus actor "lupus" "dexterity" true}})<br />
+                    {{localize "wod.attributes.short.sta"}} ({{getShifterAttrbuteBonus actor "lupus" "stamina" true}})<br />
+                    {{localize "wod.attributes.short.man"}} ({{getShifterAttrbuteBonus actor "lupus" "manipulation" true}})
+                    {{#if (eq (checkSystemsetting "attributeSettings") "20th")}}<br />{{localize "wod.attributes.perception"}} {{else}}{{localize "wod.attributes.wits"}} {{/if}} {{lowercase (localize "wod.labels.difficulty")}} -2
+                </div>
+            </div>
+            <div class="clearareaBox">
+                <div class="pullLeft shape-selectortext {{#if (shifterHasForm actor 'homid')}}text-focus{{else}}text-unfocus{{/if}}">{{localize "wod.power.diff"}}: 6</div>
+                <div class="pullLeft shape-selectortext {{#if (shifterHasForm actor 'glabro')}}text-focus{{else}}text-unfocus{{/if}}">{{localize "wod.power.diff"}}: 7</div>
+                <div class="pullLeft shape-selectortext {{#if (shifterHasForm actor 'crinos')}}text-focus{{else}}text-unfocus{{/if}}">{{localize "wod.power.diff"}}: 6</div>
+                <div class="pullLeft shape-selectortext {{#if (shifterHasForm actor 'hispo')}}text-focus{{else}}text-unfocus{{/if}}">{{localize "wod.power.diff"}}: 7</div>
+                <div class="pullLeft shape-selectortext {{#if (shifterHasForm actor 'lupus')}}text-focus{{else}}text-unfocus{{/if}}">{{localize "wod.power.diff"}}: 6</div>
+            </div>
+        </div>
+    </div>
+</div>

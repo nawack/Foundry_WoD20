@@ -1,0 +1,35 @@
+<form class="{{cssClass}} {{object.sheettype}}" autocomplete="off">
+
+    <div class="dialog-area">
+        <div class="headlineGroup splatFont">{{object.name}} ({{object.level}})</div>
+    </div>
+
+    <div class="dialog-area">
+        <div class="headline splatFont">{{localize "wod.dialog.power.selectpower"}}</div>
+        <div class="infobox">
+            {{#each object.powerlist as |power key|}}
+                <button id="parentid" class="button fullSplatColor pointer dialog-power-button {{#if (eq ../object.parentid power._id)}}active{{/if}}" value="{{power._id}}">{{power.name}}</button>
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="dialog-area">
+        <div class="headline splatFont">{{localize "wod.labels.description"}}</div>
+        <div class="infobox">
+            <div class="textarea">{{{object.description}}}</div>
+        </div>
+    </div>
+
+    <div class="dialog-area">
+        <div class="headline splatFont">{{localize "wod.labels.power.system"}}</div>
+        <div class="infobox">
+            <div class="textarea">{{{object.system}}}</div>
+        </div>            
+    </div>
+
+    <div class="centerText">
+        <button id="actionButton" class="button fullSplatColor pointer actionbutton dialog-two-button">{{localize "wod.dialog.save"}}</button>
+        <button id="closeButton" class="button fullSplatColor pointer closebutton dialog-two-button">{{localize "wod.dialog.close"}}</button>
+    </div>
+
+</form>

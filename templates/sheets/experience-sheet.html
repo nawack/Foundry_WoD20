@@ -1,0 +1,73 @@
+<form class="{{cssClass}} {{sheettype}}" autocomplete="off">
+
+	<div class="sheet-item">		
+		<header class="sheet-header">
+			<div class="top-area">
+				<div class="clearareaBox top-side">
+					<div class="pullLeft" style="display: flex;">
+
+						{{#if userpermissions.changeItemImage}}
+							<img class="profile-img pointer" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+						{{else}}
+							<img src="{{item.img}}" />
+						{{/if}}
+					</div>
+
+					<div class="pullLeft" style="display: flex; width: 300px;">
+
+						<div class="area-box">
+
+							<div class="top-sidetext">
+								{{captilize (localize "wod.experience.experience")}}
+							</div>
+
+							<!-- description -->
+							<div class="bioInformationArea floating-label-group">
+								<input class="sheet-infoValues editable" name="system.description" type="text" value="{{data.system.description}}" data-dtype="String" autocomplete="off" autofocus required />
+								<span class="floating-label">{{localize "wod.labels.description"}}</span>
+							</div>
+						</div>	
+					</div>
+				</div>				
+			</div>			
+		</header>
+
+		<section class="item-body">
+
+			<div class="dialog-area">
+
+				<!-- type -->
+				{{#if userpermissions.itemAdministrator}}
+					<div class="infobox bioInformationArea floating-label-group">
+						<select class="sheet-infoValues editable" name="system.type">
+							{{selectOptions listData.Experience selected=data.system.type localize=false}}
+						</select>
+						<span class="floating-label">{{localize "wod.labels.type"}}</span>
+					</div>
+				{{/if}}
+
+				<div class="clearareaBox">
+
+					<!-- amount -->
+					<div class="pullLeft">
+						<div class="infobox bioInformationArea floating-label-group" style="margin-top: 30px;">
+							<input class="sheet-infoValues smallbox editable" name="system.amount" type="text" value="{{data.system.amount}}" data-dtype="Number" autocomplete="off" autofocus required />
+							<span class="floating-label">{{localize "wod.experience.amount"}}</span>
+						</div>
+					</div>
+
+					{{#if (eq data.system.type "wod.types.expspent")}}
+						<!-- isspent -->
+						<div class="infobox pullRight">
+							<label class="headlineItem headlineBio splatFont" for="data.isspent">{{localize "wod.experience.spent"}}</label>
+							<input name="system.isspent" type="checkbox" {{isChecked data.system.isspent}} title="{{localize "wod.info.spendexp"}}" />
+						</div>
+					{{/if}}
+
+				</div>				
+			</div>
+
+		</section>
+
+	</div>
+</form>

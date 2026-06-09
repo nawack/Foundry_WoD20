@@ -1,0 +1,86 @@
+<div class="clearareaBox" style="display: flex;">
+
+	<div class="pullLeft" style="width: 33%;">
+	
+		{{#if data.system.settings.hasvirtue}}
+			{{> "systems/worldofdarkness/templates/actor/parts/stats_virtue.html"}}
+		{{else}}
+			&nbsp;
+		{{/if}}
+		
+	</div>
+
+	<div class="pullLeft" style="width: 33%;">
+
+		{{#if data.system.settings.haspath}}
+			{{{getGetStatArea actor actor.system.advantages.path "path" true true false}}}
+		{{/if}}
+
+		{{#if data.system.settings.hasrage}}
+			{{{getGetStatArea actor actor.system.advantages.rage "rage" true true true}}}
+		{{/if}}
+
+		{{#if data.system.settings.hasgnosis}}
+			{{{getGetStatArea actor actor.system.advantages.gnosis "gnosis" true true true}}}
+		{{/if}}
+
+		{{#if data.system.settings.hasglamour}}
+			{{{getGetStatArea actor actor.system.advantages.glamour "glamour" true true true}}}
+		{{/if}}
+
+		{{#if data.system.settings.hasnightmare}}
+			{{{getGetStatArea actor actor.system.advantages.nightmare "nightmare" false false true}}}
+		{{/if}}
+	
+		{{#if data.system.settings.haswillpower}}
+			{{{getGetStatArea actor actor.system.advantages.willpower "willpower" true true true}}}
+		{{/if}}
+
+		{{#if data.system.settings.hasfaith}}
+			{{{getGetStatArea actor actor.system.advantages.faith "faith" true true true}}}
+		{{/if}}
+
+		{{#if (and data.system.settings.hasbloodpool (ne data.system.settings.variant "earthbound"))}}
+			{{{getGetStatArea actor actor.system.advantages.bloodpool "bloodpool" false false true}}}
+		{{/if}}
+		{{#if (and data.system.settings.hasbloodpool (eq data.system.settings.variant "earthbound"))}}
+			{{{getGetStatArea actor actor.system.advantages.bloodpool "faithpool" false false true}}}
+		{{/if}}
+
+		{{#if data.system.settings.hastorment}}
+			{{{getGetStatArea actor actor.system.advantages.torment "torment" false true true}}}
+		{{/if}}
+
+		{{#if data.system.settings.hasbanality}}
+			{{{getGetStatArea actor actor.system.advantages.banality "banality" true true true}}}
+		{{/if}}
+
+		{{#if data.system.settings.hasquintessence}}
+			{{{getGetStatArea actor actor.system.advantages.quintessence "quintessence" false false true}}}
+		{{/if}}
+
+        {{#if actor.system.settings.hasessence}}
+			{{{getGetStatArea actor actor.system.advantages.essence "essence" false false true}}}
+		{{/if}}
+
+	</div>
+
+	<div class="healthBox" style="width:33%;">
+
+		<div class="pullright" style="width: 100%;">
+
+			{{#if (ne actor.system.settings.variant 'spirit')}}
+
+				{{> "systems/worldofdarkness/templates/actor/parts/stats_health.html"}}
+
+			{{else}}
+
+				&nbsp;
+
+			{{/if}}
+
+		</div>
+
+	</div>
+
+</div>

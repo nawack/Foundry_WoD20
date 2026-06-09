@@ -1,0 +1,168 @@
+<form class="{{cssClass}} {{sheettype}}" autocomplete="off">
+
+	<div class="sheet-item">
+
+		<header class="sheet-header">
+			<div class="top-area">
+				<div class="clearareaBox top-side">
+					<div class="pullLeft" style="display: flex;">
+
+						{{#if userpermissions.changeItemImage}}
+							<img class="profile-img pointer" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+						{{else}}
+							<img src="{{item.img}}" />
+						{{/if}}
+					</div>
+
+					<div class="pullLeft" style="display: flex; width: 300px;">
+
+						<div class="area-box">
+
+							<div class="top-sidetext">
+								{{localize item.system.type}}
+							</div>
+
+							<div class="bioInformationArea floating-label-group">
+								<input class="sheet-infoValues editable" name="name" type="text" value="{{item.name}}" data-dtype="String" autocomplete="off" autofocus required />
+								<span class="floating-label">{{localize 'wod.bio.name'}}</span>
+							</div>	
+							
+							{{#if (eq data.system.type "wod.types.shapeform")}}
+								<div class="bioInformationArea floating-label-group">
+									<input class="sheet-infoValues editable" name="system.label" type="text" value="{{item.system.label}}" data-dtype="String" autocomplete="off" autofocus required />
+									<span class="floating-label">{{localize "wod.labels.ability.sheetname"}}</span>
+								</div>					
+							{{/if}}
+						</div>	
+					</div>
+
+					{{#if (eqAny data.system.type "wod.types.othertraits" "wod.types.apocalypticform" "wod.types.shapeform" "wod.types.aspect" "wod.types.fetter" "wod.types.passion" "wod.types.resonance")}}
+						<div class="pullRight" style="width: auto;">
+							{{> "systems/worldofdarkness/templates/actor/parts/profile-img.html"}}		
+						</div>
+					{{/if}}
+				</div>				
+			</div>			
+		</header>
+
+		<section class="item-body">
+
+		  	{{#if (eqAnyNot data.system.type "wod.types.shapeform")}}
+				<input class="sheet-infoValues item editable" name="system.label" type="hidden" value="{{item.name}}" data-dtype="String" />
+			{{/if}}
+
+			<div class="dialog-area">
+
+				<!-- type -->
+				{{#if userpermissions.itemAdministrator}}
+					{{#if (eqAnyNot data.system.type "wod.types.realms" "wod.types.apocalypticform" "wod.types.shapeform" "wod.types.aspect" "wod.types.fetter" "wod.types.passion")}}
+						<div class="infobox bioInformationArea floating-label-group">
+							<select class="sheet-infoValues editable" name="system.type" data-dtype="String">
+								{{selectOptions listData.TypeList selected=data.system.type localize=false}}
+							</select>
+							<span class="floating-label">{{localize "wod.labels.type"}}</span>
+						</div>					
+					{{/if}}
+				{{/if}}
+
+				{{#if (eqAnyNot data.system.type "wod.types.talentsecondability" "wod.types.skillsecondability" "wod.types.knowledgesecondability" "wod.types.othertraits" "wod.types.apocalypticform" "wod.types.shapeform" "wod.types.aspect" "")}}
+					<div class="bioInformationArea floating-label-group">
+						<select class="sheet-infoValues editable" name="system.max" data-dtype="String">
+							{{selectOptions listData.Level9Value selected=data.system.max localize=false}}
+						</select>
+						<span class="floating-label">{{localize "wod.labels.settings.power.maxrating"}}</span>
+					</div>					
+				{{/if}}
+
+				{{#if (eqAnyNot data.system.type "")}}
+					<div class="infobox bioInformationArea floating-label-group">
+						<input class="sheet-infoValues editable" name="system.reference" type="text" value="{{data.system.reference}}" data-dtype="String" autocomplete="off" autofocus required />
+						<span class="floating-label">{{localize "wod.labels.trait.reference"}}</span>
+					</div>
+				{{/if}}				
+
+				<!-- if weapon/power -->
+				{{#if (eqAny data.system.type "wod.types.talentsecondability" "wod.types.skillsecondability" "wod.types.knowledgesecondability")}}
+					<div class="infobox">
+						<label class="headlineItem headlineBio splatFont" for="data.ismeleeweapon">{{localize "wod.labels.trait.meleeweapon"}}</label>
+						<input name="system.ismeleeweapon" type="checkbox" {{isChecked data.system.ismeleeweapon}} />
+					</div>
+
+					<div class="infobox">
+						<label class="headlineItem headlineBio splatFont" for="data.israngedeweapon">{{localize "wod.labels.trait.rangedweapon"}}</label>
+						<input name="system.israngedeweapon" type="checkbox" {{isChecked data.system.israngedeweapon}} />
+					</div>
+
+					<div class="infobox">
+						<label class="headlineItem headlineBio splatFont" for="data.israngedeweapon">{{localize "wod.labels.trait.power"}}</label>
+						<input name="system.ispower" type="checkbox" {{isChecked data.system.ispower}} />
+					</div>
+				{{/if}}						
+				
+			</div>
+
+			{{#if (eq data.system.type "wod.types.shapeform")}}
+				<div class="dialog-area">
+					<div>
+						<div class="splatFont">{{localize "wod.labels.trait.token"}}</div>
+						<img class="profile-img pointer shape-image" src="{{data.system.icon}}" data-edit="system.icon" />	
+						<div class="image-clear pointer" data-image-field="system.icon">{{localize "wod.labels.trait.clearimage"}}</div>
+						<div class="information-area">{{localize "wod.labels.trait.tokenhint"}}</div>
+					</div>
+					
+					<div>
+						<div class="splatFont">{{localize "wod.labels.trait.tokenimage"}}</div>
+						<img class="profile-img pointer shape-image" src="{{data.system.tokenimage}}" data-edit="system.tokenimage" />
+						<div class="image-clear pointer" data-image-field="system.tokenimage">{{localize "wod.labels.trait.clearimage"}}</div>
+						<div class="information-area">{{localize "wod.labels.trait.tokenimagehint"}}</div>					
+					</div>
+				</div>
+			{{/if}}
+
+			{{#if (eq data.system.type "wod.types.apocalypticform")}}			
+				{{> "systems/worldofdarkness/templates/sheets/parts/item_bonus.html"}}
+			{{/if}}
+
+			{{#if (eqAny data.system.type "wod.types.othertraits" "wod.types.shapeform" "wod.types.aspect")}}
+
+				{{> "systems/worldofdarkness/templates/sheets/parts/item_bonus.html"}}
+
+				<div class="dialog-area">
+
+					<div class="infobox">
+						<label class="headlineItem headlineBio splatFont" for="data.isrollable">{{localize "wod.labels.power.rollable"}}</label>
+						<input name="system.isrollable" type="checkbox" {{isChecked data.system.isrollable}} />
+					</div>
+
+					{{#if data.system.isrollable}}
+						{{> "systems/worldofdarkness/templates/sheets/parts/power_rollable.html"}}
+					{{/if}}
+
+				</div>
+
+				{{> "systems/worldofdarkness/templates/sheets/parts/power_description.html"}}				
+
+			{{/if}}			
+
+			{{#if (eqAny data.system.type "wod.types.apocalypticform" "wod.types.realms" "wod.types.resonance" "wod.types.passion" "wod.types.fetter")}}			
+
+				<!-- description -->
+				<div class="dialog-area">			
+					<div class="clearareaBox">
+						<div class="headlineItem headlineBio splatFont">{{localize "wod.labels.description"}}</div>
+					</div>		
+					<div class="infobox">
+						{{#if locked}}
+							<div class="headlineNormal textarea">{{{data.system.description}}}</div>					
+						{{else}}
+							{{editor data.system.description target="system.description" engine="prosemirror" button=false owner=owner editable=true}}
+						{{/if}}
+					</div>
+				</div>
+				
+			{{/if}}			
+			
+		</section>
+
+	</div>
+</form>

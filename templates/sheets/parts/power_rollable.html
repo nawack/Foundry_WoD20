@@ -1,0 +1,47 @@
+<div class="infobox">
+    <div class="clearareaBox">
+        <div class="headlineItem headlineBio splatFont">{{localize "wod.dice.roll"}}</div>
+    </div>
+
+    <div class="infobox clearareaBox">
+
+        <div class="pullLeft" style="margin-right: 10px;">
+            <div class="bioInformationArea floating-label-group">
+                <select class="sheet-infoValues smallbox editable" name="system.dice1">
+                    {{selectOptions listData.Dice1List selected=data.system.dice1 localize=false}}
+                </select>
+                <span class="floating-label">{{localize "wod.combat.weapon.attribute"}}</span>
+            </div>	
+        </div>		
+        
+        <!-- Not using dice2 in their powers -->
+        {{#if (and (ne data.system.type "wod.types.arcanoipower") (ne data.system.type "wod.types.hekaupower") (ne data.system.type "wod.types.numinapower"))}}
+
+            <div class="pullLeft" style="margin-right: 10px;">
+                <div class="bioInformationArea floating-label-group">
+                    <select class="sheet-infoValues smallbox editable" name="system.dice2">
+                        {{selectOptions listData.Dice2List selected=data.system.dice2 localize=false}}
+                    </select>
+                    <span class="floating-label">{{localize "wod.combat.weapon.ability"}}</span>
+                </div>	
+            </div>	
+            
+        {{/if}}
+
+        <div class="pullLeft">
+            <div class="bioInformationArea floating-label-group">
+                <input class="sheet-infoValues smallbox editable" name="system.bonus" type="text" value="{{data.system.bonus}}" data-dtype="Number" autocomplete="off" autofocus required />
+                <span class="floating-label">{{localize "wod.labels.bonus.headline"}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="infobox">
+        <div class="bioInformationArea floating-label-group">
+            <select class="sheet-infoValues smallbox editable" name="system.difficulty">
+                {{selectOptions listData.DifficultyList selected=data.system.difficulty localize=false}}
+            </select>
+            <span class="floating-label">{{localize "wod.labels.difficulty"}}</span>
+        </div>					
+    </div>
+</div>

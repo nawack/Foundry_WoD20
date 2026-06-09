@@ -1,0 +1,128 @@
+<div class="dialog-area flex-columns splat-bio-tab-area" data-drop-area="bio" data-droparea="bio">
+    <div class="clearareaBox">
+        {{#unless locked}}
+            <div class="pullLeft">
+                <i class="icon fa-solid fa-square-plus pointer item-create" title="{{localize 'wod.labels.splat.bioaddfield'}}" aria-hidden="true" data-action="splatBioToggleAdd"></i>
+            </div>
+        {{/unless}}
+        <div class="pullLeft sheet-banner-text">{{localize "wod.labels.splat.biofields"}}</div>
+    </div>
+    <div class="headlineNormal" style="margin-bottom:8px;">{{localize "wod.labels.splat.biofieldshint"}}</div>
+
+    {{#if bioFieldRows.length}}
+        <div class="flex-row bio-field-header" style="margin-bottom:6px;">
+            <div class="width-iconbox"></div>
+            <div class="bio-field-col bio-field-col-id headlineGroup">{{localize "wod.labels.splat.biofieldkey"}}</div>
+            <div class="bio-field-col bio-field-col-label headlineGroup">{{localize "wod.labels.splat.biolabel"}}</div>
+            <div class="bio-field-col bio-field-col-type headlineGroup">{{localize "wod.labels.splat.biotype"}}</div>
+            <div class="bio-field-col bio-field-col-value headlineGroup">{{localize "wod.labels.splat.biovalue"}}</div>
+            <div class="bio-field-col bio-field-col-list headlineGroup">{{localize "wod.labels.splat.biolistdata"}}</div>
+            <div class="bio-field-col-actions"></div>
+        </div>
+
+        {{#each bioFieldRows as |row|}}
+            <div class="flex-row feature-item bioInformationArea bio-field-item"
+                 data-drag="true"
+                 data-documentid="{{../item._id}}"
+                 data-list="system.bio"
+                 data-fieldkey="{{row.key}}"
+                 data-bio-index="{{row.index}}"
+                 data-type="BioField">
+                <div class="width-iconbox draggable"><i class="icon fa-solid fa-grip-vertical"></i></div>
+
+                {{#if row.isReservedGeneration}}
+                    <div class="bio-field-col bio-field-col-id">
+                        <input class="sheet-infoValues" type="text" value="{{row.key}}" readonly disabled aria-label="{{localize 'wod.labels.splat.biofieldkey'}}" />
+                    </div>
+                    <div class="bio-field-col bio-field-col-label headlineNormal" style="align-self:center;">{{localize "wod.labels.splat.biofieldgeneration"}}</div>
+                    <div class="bio-field-col bio-field-col-type">&nbsp;</div>
+                    <div class="bio-field-col bio-field-col-value">&nbsp;</div>
+                    <div class="bio-field-col bio-field-col-list">&nbsp;</div>
+                    <div class="bio-field-col-actions">
+                        {{#unless ../locked}}
+                            <a class="pointer item-delete" draggable="false" data-action="splatBioRemoveField" data-fieldkey="{{row.key}}" title="{{localize 'wod.labels.remove.headline'}}" style="margin-left: 35px;"><i class="icon fa-solid fa-trash-can"></i></a>
+                        {{/unless}}
+                    </div>
+
+                {{else}}
+                    {{#if (eq row.index ../bioEditIndex)}}
+                        <div class="bio-field-col bio-field-col-id">
+                            <input class="sheet-infoValues" type="text" value="{{row.key}}" readonly disabled aria-label="{{localize 'wod.labels.splat.biofieldkey'}}" />
+                        </div>
+                        <div class="bio-field-col bio-field-col-label">
+                            <input class="sheet-infoValues editable" type="text" name="system.bio.{{row.index}}.label" value="{{row.def.label}}" data-dtype="String" autocomplete="off" aria-label="{{localize 'wod.labels.splat.biolabel'}}" />
+                        </div>
+                        <div class="bio-field-col bio-field-col-type">
+                            <select class="sheet-infoValues editable" name="system.bio.{{row.index}}.type" data-dtype="String" aria-label="{{localize 'wod.labels.splat.biotype'}}">
+                                {{selectOptions ../bioTypeOptions selected=row.def.type localize=false}}
+                            </select>
+                        </div>
+                        <div class="bio-field-col bio-field-col-value">
+                            {{#if (eq row.def.type "select")}}
+                                <input class="sheet-infoValues editable" type="text" name="system.bio.{{row.index}}.value" value="{{row.def.value}}" data-dtype="String" autocomplete="off" aria-label="{{localize 'wod.labels.splat.biovalue'}}" />
+                            {{else if (eq row.def.type "textbox")}}
+                                <textarea class="sheet-infoValues editable" name="system.bio.{{row.index}}.value" rows="1" aria-label="{{localize 'wod.labels.splat.biovalue'}}">{{row.def.value}}</textarea>
+                            {{else}}
+                                <input class="sheet-infoValues editable" type="text" name="system.bio.{{row.index}}.value" value="{{row.def.value}}" data-dtype="String" autocomplete="off" aria-label="{{localize 'wod.labels.splat.biovalue'}}" />
+                            {{/if}}
+                        </div>
+                        <div class="bio-field-col bio-field-col-list">
+                            {{#if (eq row.def.type "select")}}
+                                <input class="sheet-infoValues editable" type="text" name="system.bio.{{row.index}}.listdata" value="{{row.def.listdata}}" data-dtype="String" autocomplete="off" aria-label="{{localize 'wod.labels.splat.biolistdata'}}" />
+                            {{else}}
+                                <input class="sheet-infoValues" type="text" value="" readonly disabled tabindex="-1" aria-hidden="true" />
+                            {{/if}}
+                        </div>
+                    {{else}}
+                        <div class="bio-field-col bio-field-col-id">
+                            <input class="sheet-infoValues" type="text" value="{{row.key}}" readonly disabled aria-label="{{localize 'wod.labels.splat.biofieldkey'}}" />
+                        </div>
+                        <div class="bio-field-col bio-field-col-label">
+                            <input class="sheet-infoValues" type="text" value="{{row.displayLabel}}" readonly disabled aria-label="{{localize 'wod.labels.splat.biolabel'}}" />
+                        </div>
+                        <div class="bio-field-col bio-field-col-type">
+                            <input class="sheet-infoValues" type="text" value="{{row.typeLabel}}" readonly disabled aria-label="{{localize 'wod.labels.splat.biotype'}}" />
+                        </div>
+                        <div class="bio-field-col bio-field-col-value">
+                            <input class="sheet-infoValues smallbox" type="text" value="{{row.displayValue}}" readonly disabled aria-label="{{localize 'wod.labels.splat.biovalue'}}" />
+                        </div>
+                        <div class="bio-field-col bio-field-col-list">
+                            {{#if (eq row.def.type "select")}}
+                                <input class="sheet-infoValues" type="text" value="{{row.def.listdata}}" readonly disabled aria-label="{{localize 'wod.labels.splat.biolistdata'}}" />
+                            {{else}}
+                                <input class="sheet-infoValues" type="text" value="" readonly disabled tabindex="-1" aria-hidden="true" />
+                            {{/if}}
+                        </div>
+                    {{/if}}
+
+                    <div class="bio-field-col-actions">
+                        {{#unless ../locked}}
+                            <a class="pointer item-edit" draggable="false" data-action="splatBioToggleEdit" data-fieldkey="{{row.key}}"
+                            title="{{#if (eq row.index ../bioEditIndex)}}{{localize 'wod.labels.splat.biodone'}}{{else}}{{localize 'wod.labels.edit.headline'}}{{/if}}">
+                                <i class="icon fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <a class="pointer item-delete" draggable="false" data-action="splatBioRemoveField" data-fieldkey="{{row.key}}" title="{{localize 'wod.labels.remove.headline'}}">
+                                <i class="icon fa-solid fa-trash-can"></i>
+                            </a>
+                        {{/unless}}
+                    </div>
+                {{/if}}
+            </div>
+        {{/each}}
+    {{else}}
+        <div class="headlineNormal">{{localize "wod.labels.splat.bionofields"}}</div>
+    {{/if}}
+
+    {{#if bioAdding}}
+        {{#unless locked}}
+            <div class="flex-row bioInformationArea" style="margin-bottom: 10px; align-items: center;">
+                <div class="infobox floating-label-group" style="min-width:160px; margin-bottom:0;">
+                    <input class="sheet-infoValues" type="text" data-splat-new-bio-key id="splat-new-bio-key-{{item._id}}" value="" data-dtype="String" autocomplete="off" />
+                    <span class="floating-label">{{localize "wod.labels.splat.biofieldkey"}}</span>
+                </div>
+                <a class="pointer item-create" draggable="false" data-action="splatBioConfirmAdd" title="{{localize 'wod.labels.splat.bioaddfield'}}"><i class="icon fa-solid fa-check"></i></a>
+                <a class="pointer item-warning" draggable="false" data-action="splatBioCancelAdd" title="{{localize 'wod.labels.cancel'}}"><i class="icon fa-solid fa-xmark"></i></a>
+            </div>
+        {{/unless}}
+    {{/if}}
+</div>

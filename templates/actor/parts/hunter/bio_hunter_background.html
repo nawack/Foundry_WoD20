@@ -1,0 +1,28 @@
+<div class="pullLeft" style="display: flex; width: 320px;">
+    <div class="pullLeft area-box">        
+
+        <div class="bioInformationArea floating-label-group">
+            {{#if locked}}
+                <input class="sheet-infoValues" type="text" value="{{localize data.system.creed}}" data-dtype="String" autofocus required />
+            {{else}}
+                <select class="sheet-infoValues editable" name="system.creed" data-type="{{config.sheettype.hunter}}" data-name="data.system.creed" data-dtype="String">
+                    {{selectOptions listData.CreedList selected=data.system.creed localize=false}}
+                </select>
+    			
+            {{/if}}
+            <span class="floating-label">{{localize 'wod.bio.hunter.creed'}}</span>
+        </div>
+
+        <div class="bioInformationArea floating-label-group">
+            {{#if locked}}
+                <input class="sheet-infoValues" type="text" value="{{localize data.system.primaryvirtue}}" data-dtype="String" autofocus required />
+            {{else}}
+                <select class="sheet-infoValues editable" name="system.primaryvirtue" data-type="{{config.sheettype.hunter}}" data-name="data.system.primaryvirtue" data-dtype="String">
+                    {{selectOptions listData.PrimaryVirtueList selected=data.system.primaryvirtue localize=false}}
+                </select>
+            {{/if}}
+            <span class="floating-label">{{localize 'wod.bio.hunter.primaryvirtue'}}</span>                                    
+        </div>        
+
+    </div>
+</div>

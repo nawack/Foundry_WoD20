@@ -1,0 +1,47 @@
+<div class="sheet-area flex-columns">  
+    <div class="shape-area">
+        <div class="sheet-headline sheet-banner splatFont"><span class="sheet-banner-text">{{localize "wod.tab.shapechange"}}</span></div>
+        <div>
+            <div class="pullLeft shape-selector shape-ananasi thin-border-left {{#if (shifterHasForm actor 'homid')}}shape-selector-active{{/if}}" data-form="wod.shapes.homid">{{localize "wod.shapes.homid"}}</div>
+            <div class="pullLeft shape-selector shape-ananasi thin-border-left {{#if (shifterHasForm actor 'glabro')}}shape-selector-active{{/if}}" data-form="wod.shapes.glabro">{{localize "wod.shapes.lilian"}}</div>
+            <div class="pullLeft shape-selector shape-ananasi thin-border-left {{#if (shifterHasForm actor 'hispo')}}shape-selector-active{{/if}}" data-form="wod.shapes.hispo">{{localize "wod.shapes.pithus"}}</div>
+            <div class="pullLeft shape-selector shape-ananasi thin-border-left thin-border-right {{#if (shifterHasForm actor 'lupus')}}shape-selector-active{{/if}}" data-form="wod.shapes.lupus">{{localize "wod.shapes.crawlerling"}}</div>
+        </div>
+
+        <div>
+            <div class="pullLeft shape-background shape-background shape-ananasi"></div>
+            <div>
+                <div class="pullLeft shape-selectortext shape-ananasi {{#if (shifterHasForm actor 'homid')}}text-focus{{else}}text-unfocus{{/if}}">
+                    {{localize "wod.labels.nochange"}}
+                </div>
+                <div class="pullLeft shape-selectortext shape-ananasi {{#if (shifterHasForm actor 'glabro')}}text-focus{{else}}text-unfocus{{/if}}">
+                    {{localize "wod.attributes.short.str"}} (+2)<br />
+                    {{localize "wod.attributes.short.dex"}} (+3)<br />
+                    {{localize "wod.attributes.short.sta"}} (+2)<br />
+                    {{localize "wod.attributes.short.man"}} (-1)
+                    {{#if (eq (checkSystemsetting "attributeSettings") "20th")}}<br />{{localize "wod.attributes.short.app"}} (0){{/if}}
+                </div>
+                <div class="pullLeft shape-selectortext shape-ananasi {{#if (shifterHasForm actor 'hispo')}}text-focus{{else}}text-unfocus{{/if}}">
+                    {{localize "wod.attributes.short.str"}} (+4)<br />
+                    {{localize "wod.attributes.short.dex"}} (+1)<br />
+                    {{localize "wod.attributes.short.sta"}} (+3)<br />
+                    {{localize "wod.attributes.short.man"}} (-3)
+                    {{#if (eq (checkSystemsetting "attributeSettings") "20th")}}<br />{{localize "wod.attributes.short.app"}} (0){{/if}}
+                </div>
+                <div class="pullLeft shape-selectortext shape-ananasi {{#if (shifterHasForm actor 'lupus')}}text-focus{{else}}text-unfocus{{/if}}">
+                    {{localize "wod.attributes.short.str"}} (0)<br />
+                    {{localize "wod.attributes.short.dex"}} (+5)<br />
+                    {{localize "wod.attributes.short.sta"}} (0)<br />
+                    {{localize "wod.attributes.short.man"}} (0)
+                    {{#if (eq (checkSystemsetting "attributeSettings") "20th")}}<br />{{localize "wod.attributes.short.app"}} (0){{/if}}
+                </div>
+            </div>
+            <div class="clearareaBox">
+                <div class="pullLeft shape-selectortext shape-ananasi {{#if (shifterHasForm actor 'homid')}}text-focus{{else}}text-unfocus{{/if}}">{{localize "wod.power.diff"}}: 6</div>
+                <div class="pullLeft shape-selectortext shape-ananasi {{#if (shifterHasForm actor 'glabro')}}text-focus{{else}}text-unfocus{{/if}}">{{localize "wod.power.diff"}}: 7</div>
+                <div class="pullLeft shape-selectortext shape-ananasi {{#if (shifterHasForm actor 'hispo')}}text-focus{{else}}text-unfocus{{/if}}">{{localize "wod.power.diff"}}: 7</div>
+                <div class="pullLeft shape-selectortext shape-ananasi {{#if (shifterHasForm actor 'lupus')}}text-focus{{else}}text-unfocus{{/if}}">{{localize "wod.power.diff"}}: 6</div>
+            </div>
+        </div>        
+    </div>
+</div>

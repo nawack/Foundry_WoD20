@@ -1,0 +1,142 @@
+<form class="{{cssClass}} {{sheettype}}" autocomplete="off">
+
+	<div class="sheet-item">
+
+		<header class="sheet-header">
+			<div class="top-area">
+				<div class="clearareaBox top-side">
+					<div class="pullLeft" style="display: flex;">
+
+						{{#if userpermissions.changeItemImage}}
+							<img class="profile-img pointer" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+						{{else}}
+							<img src="{{item.img}}" />
+						{{/if}}
+					</div>
+
+					<div class="pullLeft" style="display: flex; width: 300px;">
+
+						<div class="area-box">
+
+							<div class="top-sidetext">
+								{{captilize (localize "wod.types.armor")}}
+							</div>
+
+							<div class="bioInformationArea floating-label-group">
+								<input class="sheet-infoValues editable" name="name" type="text" value="{{item.name}}" data-dtype="String" autocomplete="off" autofocus required />
+								<span class="floating-label">{{localize 'wod.bio.name'}}</span>
+							</div>													
+						</div>	
+					</div>
+
+					<div class="pullRight" style="width: auto;">
+						{{> "systems/worldofdarkness/templates/actor/parts/profile-img.html"}}		
+					</div>
+				</div>				
+			</div>			
+		</header>
+
+		<section class="item-body">
+
+			<div class="dialog-area">
+
+				<!-- Soak -->
+				<div class="clearareaBox">
+					<div class="headlineItem headlineBio splatFont">{{localize "wod.health.soak"}}</div>
+				</div>
+				<div class="infobox clearareaBox">
+					<div class="pullLeft" style="margin-right: 10px;">
+						<div class="bioInformationArea floating-label-group">
+							<input class="sheet-infoValues smallbox editable" name="system.soak.bashing" type="text" value="{{data.system.soak.bashing}}" data-dtype="Number" autocomplete="off" autofocus required />
+							<span class="floating-label">{{localize "wod.health.bashing"}}</span>
+						</div>
+					</div>
+
+					<div class="pullLeft" style="margin-right: 10px;">
+						<div class="bioInformationArea floating-label-group">
+							<input class="sheet-infoValues smallbox editable" name="system.soak.lethal" type="text" value="{{data.system.soak.lethal}}" data-dtype="Number" autocomplete="off" autofocus required />
+							<span class="floating-label">{{localize "wod.health.lethal"}}</span>
+						</div>
+					</div>
+
+					<div class="pullLeft">
+						<div class="bioInformationArea floating-label-group">
+							<input class="sheet-infoValues smallbox editable" name="system.soak.aggravated" type="text" value="{{data.system.soak.aggravated}}" data-dtype="Number" autocomplete="off" autofocus required />
+							<span class="floating-label">{{localize "wod.health.aggravated"}}</span>
+						</div>
+					</div>
+				</div>
+
+				{{#if hasChimerical}}
+					<div class="clearareaBox">
+						<div class="headlineItem headlineBio splatFont">{{localize "wod.health.chimerical"}}</div>
+					</div>
+					<div class="infobox clearareaBox">
+						<div class="pullLeft" style="margin-right: 10px;">
+							<div class="bioInformationArea floating-label-group">
+								<input class="sheet-infoValues smallbox editable" name="system.soak.chimerical.bashing" type="text" value="{{data.system.soak.chimerical.bashing}}" data-dtype="Number" autocomplete="off" autofocus required />
+								<span class="floating-label">{{localize "wod.health.bashing"}}</span>
+							</div>
+						</div>
+
+						<div class="pullLeft" style="margin-right: 10px;">
+							<div class="bioInformationArea floating-label-group">
+								<input class="sheet-infoValues smallbox editable" name="system.soak.chimerical.lethal" type="text" value="{{data.system.soak.chimerical.lethal}}" data-dtype="Number" autocomplete="off" autofocus required />
+								<span class="floating-label">{{localize "wod.health.lethal"}}</span>
+							</div>
+						</div>
+
+						<div class="pullLeft">
+							<div class="bioInformationArea floating-label-group">
+								<input class="sheet-infoValues smallbox editable" name="system.soak.chimerical.aggravated" type="text" value="{{data.system.soak.chimerical.aggravated}}" data-dtype="Number" autocomplete="off" autofocus required />
+								<span class="floating-label">{{localize "wod.health.aggravated"}}</span>
+							</div>
+						</div>
+					</div>
+				{{/if}}
+			</div>
+
+			<div class="dialog-area">
+				<div class="infobox bioInformationArea floating-label-group">
+					<input class="sheet-infoValues editable" name="system.reference" type="text" value="{{data.system.reference}}" data-dtype="String" autocomplete="off" autofocus required />
+					<span class="floating-label">{{localize "wod.labels.trait.reference"}}</span>
+				</div>
+
+				<!-- Dexterity Penalty -->
+				<div class="infobox bioInformationArea floating-label-group">
+					<input class="sheet-infoValues editable" name="system.dexpenalty" type="text" value="{{data.system.dexpenalty}}" data-dtype="Number" autocomplete="off" autofocus required />
+					<span class="floating-label">{{localize "wod.combat.armor.penalty"}}</span>
+				</div>
+
+				{{#if iswerewolf}}
+					<!-- Shapes -->
+					<div class="infobox">
+						<label class="headlineItem headlineBio splatFont" for="data.shapes" style="width:100%">{{localize "wod.shapes.shapes"}}</label>
+						<input name="system.forms.hashomid" type="checkbox" {{isChecked data.system.forms.hashomid}}>{{localize "wod.shapes.homid"}}</input>
+						<input name="system.forms.hasglabro" type="checkbox" {{isChecked data.system.forms.hasglabro}}>{{localize "wod.shapes.glabro"}}</input>
+						<input name="system.forms.hascrinos" type="checkbox" {{isChecked data.system.forms.hascrinos}}>{{localize "wod.shapes.crinos"}}</input>
+						<input name="system.forms.hashispo" type="checkbox" {{isChecked data.system.forms.hashispo}}>{{localize "wod.shapes.hispo"}}</input>
+						<input name="system.forms.haslupus" type="checkbox" {{isChecked data.system.forms.haslupus}}>{{localize "wod.shapes.lupus"}}</input>
+					</div>			
+				{{/if}}	
+			</div>
+
+			<!-- description -->
+			<div class="dialog-area">
+				<div class="clearareaBox">
+					<div class="headlineItem headlineBio splatFont">{{localize "wod.labels.description"}}</div>
+				</div>
+				<div class="infobox">
+
+					{{#if locked}}
+						<div class="headlineNormal textarea">{{{data.system.description}}}</div>					
+					{{else}}
+						{{editor data.system.description target="system.description" engine="prosemirror" button=false owner=owner editable=true}}
+					{{/if}}
+				</div>
+			</div>
+
+		</section>
+
+	</div>
+</form>

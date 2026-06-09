@@ -1,0 +1,225 @@
+<form class="{{cssClass}} flexcol {{#if locked}}locked{{/if}} {{getEra actor}}" autocomplete="off">
+
+	<!-- Werewolf Sheet Header -->
+	<div class="sheet-character">				
+	
+		{{!-- Always visible --}}
+		<header class="sheet-header">	
+				
+		</header>	
+
+		<!-- Sheet part -->
+		<section class="clearareaBox sheet-body">	
+			
+			<!-- Menu -->
+			<div class="navigation pullLeft">
+				{{#if (not actor.limited)}}
+					<!-- Lock/Unlock -->
+					{{> "systems/worldofdarkness/templates/actor/parts/profile-img.html"}}	
+				{{/if}}
+
+				<!-- Navigation -->
+				{{> "systems/worldofdarkness/templates/actor/parts/navigation.html"}}
+			</div>
+
+			<div class="pullRight" data-area="microicons">
+				<div data-area="shapeicon">
+					{{#if (shifterHasForm actor 'homid')}}
+						<img class="shapeIcon" src="systems/worldofdarkness/assets/img/werewolf/form/form_homid.svg" />
+					{{/if}}
+					{{#if (shifterHasForm actor 'glabro')}}
+						<img class="shapeIcon" src="systems/worldofdarkness/assets/img/werewolf/form/form_glabro.svg" />
+					{{/if}}
+					{{#if (shifterHasForm actor 'crinos')}}
+						<img class="shapeIcon" src="systems/worldofdarkness/assets/img/werewolf/form/form_crinos.svg" />
+					{{/if}}
+					{{#if (shifterHasForm actor 'hispo')}}
+						<img class="shapeIcon" src="systems/worldofdarkness/assets/img/werewolf/form/form_hispo.svg" />
+					{{/if}}
+					{{#if (shifterHasForm actor 'lupus')}}
+						<img class="shapeIcon" src="systems/worldofdarkness/assets/img/werewolf/form/form_lupus.svg" />
+					{{/if}}
+				</div>
+
+				<!-- Macro icons -->
+				{{> "systems/worldofdarkness/templates/actor/parts/macro_icons.html"}}					
+			</div>
+
+			<div class="centerText sheet-headline splatFont">
+				{{captilize (localize "wod.games.werewolf")}}
+			</div>
+
+			<!-- Bio Tab -->
+			<div class="tab bio sheet-inner-area" data-group="primary" data-tab="bio">
+
+				{{~> "systems/worldofdarkness/templates/actor/parts/bio.html"}} 	
+
+			</div>
+		
+			<!-- Core Tab -->
+			<div class="tab core sheet-inner-area" data-group="primary" data-tab="core">
+
+				<i class="macroBtn pointer createicon fa-solid fa-square-plus item-create" title="{{localize "wod.labels.add.item"}}" aria-hidden="true" data-itemtype="All" data-origin="core"></i>
+
+				<!-- Core Attributes -->
+				<div class="sheet-area flex-columns">
+					{{> "systems/worldofdarkness/templates/actor/parts/attributes.html"}} 	
+				</div>
+
+				<!-- Core Abilities -->
+				<div class="sheet-area flex-columns">
+					{{> "systems/worldofdarkness/templates/actor/parts/abilities.html"}}
+				</div>
+
+				<!-- Core Stats -->
+				<div class="sheet-area flex-columns">
+					<div class="clearareaBox" style="display: flex;">
+						<div class="sheet-boxcontainer">
+
+							<div class="clearareaBox">
+
+								<div class="pullLeft" style="width: 33%; height: 100%; display: flex; flex-direction: column;">
+
+									{{{getGetStatArea actor actor.system.renown.glory "glory" false true true}}}
+
+									{{{getGetStatArea actor actor.system.renown.honor "honor" false true true}}}
+
+									{{{getGetStatArea actor actor.system.renown.wisdom "wisdom" false true true}}}
+
+									<div class="rank-area">
+										<div class="sheet-headline headlineGroup sheet-banner-small splatFont centerText" data-area="rank" style="margin-top: auto;"><span class="sheet-banner-text">{{localize "wod.advantages.rank"}}</span></div>
+									
+										<div class="resource-value permValueRow" data-value="{{data.system.renown.rank}}" data-name="renown.rank">
+									
+											{{#numLoop 6}}
+											
+												<span class="resource-value-step rankAttribute" data-type="{{../config.sheettype.werewolf}}" data-index="{{this}}"></span>
+											
+											{{/numLoop}}
+									
+											<span class="splatFont">{{getShifterRank actor}}</span>
+											
+										</div>
+									</div>
+							
+								</div>
+								
+								<div class="pullLeft" style="width: 33%; height: 100%; display: flex; flex-direction: column;">		
+													
+									<div>
+										{{{getGetStatArea actor actor.system.advantages.rage "rage" true true true}}}
+									</div>
+					
+									<div style="margin-top: auto; margin-bottom: auto;">
+										{{{getGetStatArea actor actor.system.advantages.gnosis "gnosis" true true true}}}
+									</div>
+							
+									<div style="margin-top: auto;">
+										{{{getGetStatArea actor actor.system.advantages.willpower "willpower" true true true}}}
+									</div>															
+							
+								</div>
+								
+								<div class="pullLeft healthBox" style="width: 33%; height: 100%; display: flex; flex-direction: column;">
+									
+									<div style="width: 100%;">
+										{{> "systems/worldofdarkness/templates/actor/parts/stats_health.html"}}
+									</div>
+
+									<div class="sheet-headline headlineGroup splatFont" style="margin-top: 40px">
+										<div>
+											<div class="sheet-banner-small"><span class="sheet-banner-text">{{localize 'wod.experience.experience'}}</span></div>
+											<div class="total experienceValue">{{getTotalExperience actor "total"}}</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+							<div>
+
+								{{#if data.system.settings.haspath}}
+									<div class="pullLeft" style="width: 33%; height: 100%; display: flex; flex-direction: column;">
+										{{{getGetStatArea actor actor.system.advantages.path "path" true true false}}}
+									</div>
+								{{/if}}
+
+								{{#if data.system.settings.hasvirtue}}
+									<div class="pullLeft" style="width: 33%; height: 100%; display: flex; flex-direction: column;">
+										{{> "systems/worldofdarkness/templates/actor/parts/stats_virtue.html"}}
+									</div>
+								{{/if}}
+
+								{{#if data.system.settings.hasbloodpool}}
+									<div class="pullLeft" style="width: 33%; height: 100%; display: flex; flex-direction: column;">
+										{{{getGetStatArea actor actor.system.advantages.bloodpool "bloodpool" false false true}}}
+
+										<div class="information-area centerText">{{localize "wod.advantages.perturn"}}: {{data.system.advantages.bloodpool.perturn}}</div>
+									</div>
+								{{/if}}
+
+							</div>
+						</div>		
+					</div>
+				</div>				
+			</div>
+			
+			<!-- Combat Tab -->
+			<div class="tab combat sheet-inner-area" data-group="primary" data-tab="combat">
+
+				{{> "systems/worldofdarkness/templates/actor/parts/combat.html"}}
+
+			</div>
+
+			<!-- Gear Tab -->
+			<div class="tab gear sheet-inner-area" data-group="primary" data-tab="gear">
+
+				{{~> "systems/worldofdarkness/templates/actor/parts/gear.html"}}
+
+			</div>
+
+			<!-- Shapechange Tab -->
+			<div class="tab shapechange sheet-inner-area" data-group="primary" data-tab="shapechange">
+
+				{{> "systems/worldofdarkness/templates/actor/parts/werewolf/shift.html"}}
+
+			</div>
+			
+			<!-- Gift Tab -->
+			<div class="tab gift sheet-inner-area" data-group="primary" data-tab="gift">
+
+				<i class="macroBtn pointer createicon fa-solid fa-square-plus item-create" title="{{localize "wod.labels.add.item"}}" aria-hidden="true" data-itemtype="All" data-origin="power"></i>
+
+				{{> "systems/worldofdarkness/templates/actor/parts/werewolf/gift.html"}}
+				{{> "systems/worldofdarkness/templates/actor/parts/werewolf/rites.html"}}
+
+			</div>
+
+			{{!-- Power Tab --}}
+			{{> "systems/worldofdarkness/templates/actor/parts/power.html"}}
+
+			<!-- Notes Tab -->
+			<div class="tab note sheet-inner-area" data-group="primary" data-tab="note">
+
+				{{> "systems/worldofdarkness/templates/actor/parts/notes.html"}}
+
+			</div>
+
+			<!-- Effect Tab -->
+			<div class="tab effect sheet-inner-area" data-group="primary" data-tab="effect">
+
+				{{> "systems/worldofdarkness/templates/actor/parts/effect.html"}} 	
+
+			</div>
+			
+			<!-- Settings Tab -->
+			<div class="tab settings sheet-inner-area" data-group="primary" data-tab="settings">
+			
+				{{> "systems/worldofdarkness/templates/actor/parts/settings.html"}}
+				
+			</div>
+		
+		</section>
+	</div>
+		
+</form>

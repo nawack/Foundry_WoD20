@@ -1,0 +1,18 @@
+<div class="sheet-headline sheet-banner-small splatFont vrollable"	
+	data-type="{{config.sheettype.mage}}"
+	data-key="arete"
+	data-noability="true"><span class="sheet-banner-text">{{localize 'wod.advantages.arete'}}</span></div>
+
+<div class="sheet-boxcontainer">
+	<div class="resource-value tempSquareRow"  data-value="{{data.system.advantages.arete.permanent}}" data-name="advantages.arete.permanent">
+
+		{{#numLoop data.system.advantages.arete.max}}
+
+			<span class="resource-value-step" 		
+				data-type="{{../config.sheettype.mage}}" 
+				data-index="{{this}}"></span>
+		
+		{{/numLoop}}
+		
+	</div>
+</div>

@@ -1,0 +1,247 @@
+<div class="pullLeft" style="display: flex; width: 320px;">
+
+    <div class="pullLeft area-box">
+
+        <div class="bioInformationArea floating-label-group">
+            {{#if locked}}
+                <input class="sheet-infoValues" type="text" value="{{localize data.system.seeming}}" autocomplete="off" autofocus required />
+            {{else}}
+                <select class="sheet-infoValues editable" name="system.seeming" data-name="data.system.seeming" data-dtype="String">
+                    {{selectOptions listData.SeemingList selected=data.system.seeming localize=false}}
+                </select>
+            {{/if}}
+            <span class="floating-label">{{localize "wod.bio.changeling.seeming"}}</span>
+        </div>
+
+        {{#if (ne actor.system.settings.variant 'menehune')}}
+            <div class="bioInformationArea floating-label-group">            
+                {{#if locked}}            
+                    <input class="sheet-infoValues" type="text" value="{{#if (eq actor.system.kith 'custom')}}{{actor.system.custom.kith}}{{else}}{{localize data.system.kith}}{{/if}}" data-dtype="String" autofocus required />
+                {{else}}
+                    <select class="sheet-infoValues {{#if (eq actor.system.kith 'custom')}}edit-property{{/if}} editable" name="system.kith" data-name="data.system.kith" data-dtype="String">
+                        {{selectOptions listData.KithList selected=data.system.kith localize=false}}
+                    </select>
+                    {{#if (eq actor.system.kith "custom")}}
+                        <a class="pullLeft item-edit" title="{{localize "wod.labels.customkith"}}" data-type="Bio" data-name="{{localize "wod.bio.changeling.kith"}}" data-item-id="kith" data-custom="{{actor.system.custom.kith}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                    {{/if}}
+                {{/if}}
+                {{#if (eqAny actor.system.settings.variant 'inanimae' 'darkkin')}}
+                    {{#if (eq actor.system.settings.variant 'inanimae')}}
+                        <span class="floating-label">{{localize "wod.bio.changeling.phyla"}}</span>
+                    {{/if}}
+                    {{#if (eq actor.system.settings.variant 'darkkin')}}
+                        <span class="floating-label">{{localize "wod.bio.changeling.adhene"}}</span>
+                    {{/if}}
+                {{else}}
+                    <span class="floating-label">{{localize "wod.bio.changeling.kith"}}</span>        
+                {{/if}}
+            </div>
+        {{/if}}
+
+        <div class="bioInformationArea floating-label-group">
+            {{#if locked}}
+                <input class="sheet-infoValues" type="text" value="{{data.system.antithesis}}" autocomplete="off" autofocus required />
+            {{else}}
+                <input class="sheet-infoValues editable" name="system.antithesis" type="text" value="{{data.system.antithesis}}" data-name="data.system.antithesis" data-dtype="String" autocomplete="off" autofocus required />
+            {{/if}}
+            <span class="floating-label">{{localize "wod.bio.changeling.antithesis"}}</span>
+        </div>
+
+        <div class="bioInformationArea floating-label-group">
+            {{#if locked}}
+                <input class="sheet-infoValues" type="text" value="{{localize data.system.court}}" autocomplete="off" autofocus required />
+            {{else}}
+                <select class="sheet-infoValues editable" name="system.court" data-name="data.system.court" data-dtype="String">
+                    {{selectOptions listData.CourtList selected=data.system.court localize=false}}
+                </select>
+            {{/if}}
+            <span class="floating-label">{{localize "wod.bio.changeling.court"}}</span>
+        </div>
+
+        <div class="bioInformationArea floating-label-group">
+            {{#if locked}}
+                <input class="sheet-infoValues" type="text" value="{{localize data.system.affinityrealm}}" autocomplete="off" autofocus required />
+            {{else}}
+                <select class="sheet-infoValues editable" name="system.affinityrealm" data-name="data.system.affinityrealm" data-dtype="String">
+                    {{selectOptions listData.AffinityRealmList selected=data.system.affinityrealm localize=false}}
+                </select>
+            {{/if}}
+            <span class="floating-label">{{localize "wod.bio.changeling.affinity"}}</span>
+        </div>
+
+        {{#if (eq actor.system.settings.variant 'dauntain')}}
+            <div class="bioInformationArea floating-label-group">
+                {{#if locked}}
+                    <input class="sheet-infoValues" type="text" value="{{data.system.variant.brand}}" autocomplete="off" autofocus required />
+                {{else}}
+                    <input class="sheet-infoValues editable" name="system.variant.brand" type="text" value="{{data.system.variant.brand}}" data-name="data.system.variant.brand" data-dtype="String" autocomplete="off" autofocus required />
+                {{/if}}
+                <span class="floating-label">{{localize "wod.bio.changeling.brand"}}</span>
+            </div>
+        {{/if}}
+        
+    </div>
+
+</div>
+
+<div class="clearareaBox area-box">
+
+    <div class="sheet-headline sheet-banner sheet-topbanner">&nbsp;</div>
+    <div>
+        <label class="headlineText splatFont" for="data.system.birthrights">{{localize "wod.bio.changeling.birthright"}}</label>
+        <div class="clearareaBox">
+            {{#if locked}}
+                <div class="headlineNormal textarea {{#if (eq actor.system.birthright1 '')}}small{{/if}}">{{{actor.system.birthright1}}}</div>
+            {{else}}
+                {{editor actor.system.birthright1 target="system.birthright1" engine="prosemirror" button=false owner=owner editable=true}}
+            {{/if}}				
+        </div>
+
+        <div class="clearareaBox">
+            {{#if locked}}
+                <div class="headlineNormal textarea {{#if (eq actor.system.birthright2 '')}}small{{/if}}">{{{actor.system.birthright2}}}</div>
+            {{else}}
+                {{editor actor.system.birthright2 target="system.birthright2" engine="prosemirror" button=false owner=owner editable=true}}
+            {{/if}}				
+        </div>
+    </div>
+</div>
+
+<div class="clearareaBox area-box">
+    <div>
+        <label class="headlineText splatFont" for="data.system.frailty">{{localize "wod.bio.changeling.frailty"}}</label>
+        <div class="clearareaBox">
+            {{#if locked}}
+                <div class="headlineNormal textarea {{#if (eq actor.system.frailty '')}}small{{/if}}">{{{actor.system.frailty}}}</div>
+            {{else}}
+                {{editor actor.system.frailty target="system.frailty" engine="prosemirror" button=false owner=owner editable=true}}
+            {{/if}}				
+        </div>
+    </div>
+</div>
+
+<div class="clearareaBox area-box">
+    <div>
+        {{#if (eqAny actor.system.settings.variant 'menehune')}}
+            <label class="headlineText splatFont" for="data.system.threshold">{{localize "wod.bio.changeling.raiding"}}</label>
+        {{else}}
+            <label class="headlineText splatFont" for="data.system.threshold">{{localize "wod.bio.changeling.threshold"}}</label>
+        {{/if}}
+        {{#if locked}}
+            <div class="smallbox headlineNormal textarea {{#if (eq actor.system.threshold '')}}small{{/if}}">{{{actor.system.threshold}}}</div>
+        {{else}}
+            {{editor actor.system.threshold target="system.threshold" engine="prosemirror" button=false owner=owner editable=true}}
+        {{/if}}
+    </div>
+</div>	
+
+<div class="clearareaBox area-box">
+    <div>
+        {{#if (eqAny actor.system.settings.variant 'menehune')}}
+            <label class="headlineText splatFont" for="data.system.revelry">{{localize "wod.bio.changeling.havesting"}}</label>
+        {{else}}
+            <label class="headlineText splatFont" for="data.system.revelry">{{localize "wod.bio.changeling.revelry"}}</label>
+        {{/if}}
+        {{#if locked}}
+            <div class="smallbox headlineNormal textarea {{#if (eq actor.system.revelry '')}}small{{/if}}">{{{actor.system.revelry}}}</div>
+        {{else}}
+            {{editor actor.system.revelry target="system.revelry" engine="prosemirror" button=false owner=owner editable=true}}
+        {{/if}}
+    </div>
+</div>
+
+<div class="clearareaBox area-box">
+    <div>
+        <label class="headlineText splatFont" for="data.system.house">{{localize "wod.bio.changeling.house"}}</label>
+        {{#if locked}}
+            <div class="smallbox headlineNormal textarea {{#if (eq actor.system.house '')}}small{{/if}}">{{{actor.system.house}}}</div>
+        {{else}}
+            {{editor actor.system.house target="system.house" engine="prosemirror" button=false owner=owner editable=true}}
+        {{/if}}
+    </div>
+</div>
+
+<div class="clearareaBox area-box">
+    <div>
+        {{#if (eqAny actor.system.settings.variant 'thallain' 'nunnehi' 'menehune' 'darkkin')}}
+            {{#if (eq actor.system.settings.variant 'thallain')}}
+                <label class="headlineText splatFont" for="data.system.legacyseelie">{{localize "wod.bio.changeling.nightmarelegacy"}}</label>
+            {{/if}}
+            {{#if (eq actor.system.settings.variant 'nunnehi')}}
+                <label class="headlineText splatFont" for="data.system.legacyseelie">{{localize "wod.bio.changeling.winterrock"}}</label>
+            {{/if}}
+            {{#if (eq actor.system.settings.variant 'menehune')}}
+                <label class="headlineText splatFont" for="data.system.legacyseelie">{{localize "wod.bio.changeling.feast"}}</label>
+            {{/if}}
+            {{#if (eq actor.system.settings.variant 'darkkin')}}
+                <label class="headlineText splatFont" for="data.system.legacyunseelie">{{localize "wod.bio.changeling.aria1"}}</label>
+            {{/if}}
+        {{else}}
+            <label class="headlineText splatFont" for="data.system.legacyseelie">{{localize "wod.bio.changeling.legacyseelie"}}</label>
+        {{/if}}
+        <div class="clearareaBox">
+            {{#if locked}}
+                <div class="headlineNormal textarea {{#if (eq actor.system.legacyseelie '')}}small{{/if}}">{{{actor.system.legacyseelie}}}</div>
+            {{else}}
+                {{editor actor.system.legacyseelie target="system.legacyseelie" engine="prosemirror" button=false owner=owner editable=true}}
+            {{/if}}				
+        </div>
+    </div>
+</div>
+
+<div class="clearareaBox area-box">
+    {{#if (eqAny actor.system.settings.variant 'thallain' 'nunnehi' 'menehune' 'darkkin')}}
+        {{#if (eq actor.system.settings.variant 'thallain')}}
+            <label class="headlineText splatFont" for="data.system.legacyunseelie">{{localize "wod.bio.changeling.kithain"}}</label>
+        {{/if}}
+        {{#if (eq actor.system.settings.variant 'nunnehi')}}
+            <label class="headlineText splatFont" for="data.system.legacyunseelie">{{localize "wod.bio.changeling.summer"}}</label>
+        {{/if}}        
+        {{#if (eq actor.system.settings.variant 'menehune')}}
+            <label class="headlineText splatFont" for="data.system.legacyunseelie">{{localize "wod.bio.changeling.war"}}</label>
+        {{/if}}        
+        {{#if (eq actor.system.settings.variant 'darkkin')}}
+            <label class="headlineText splatFont" for="data.system.legacyunseelie">{{localize "wod.bio.changeling.aria2"}}</label>
+        {{/if}}
+    {{else}}
+        <label class="headlineText splatFont" for="data.system.legacyunseelie">{{localize "wod.bio.changeling.legacyunseelie"}}</label>
+    {{/if}}
+    <div class="clearareaBox">
+        {{#if locked}}
+            <div class="headlineNormal textarea {{#if (eq actor.system.legacyunseelie '')}}small{{/if}}">{{{actor.system.legacyunseelie}}}</div>
+        {{else}}
+            {{editor actor.system.legacyunseelie target="system.legacyunseelie" engine="prosemirror" button=false owner=owner editable=true}}
+        {{/if}}				
+    </div>
+</div>
+
+{{#if (eqAny actor.system.settings.variant 'nunnehi' 'darkkin')}}
+    <div class="clearareaBox area-box">
+        {{#if (eq actor.system.settings.variant 'nunnehi')}}
+            <label class="headlineText splatFont" for="data.system.variant.legacy">{{localize "wod.bio.changeling.midseason"}}</label>
+        {{/if}}
+        {{#if (eq actor.system.settings.variant 'darkkin')}}
+            <label class="headlineText splatFont" for="data.system.variant.legacy">{{localize "wod.bio.changeling.aria3"}}</label>
+        {{/if}}
+        <div class="clearareaBox">
+            {{#if locked}}
+                <div class="headlineNormal textarea {{#if (eq actor.system.variant.legacy '')}}small{{/if}}">{{{actor.system.variant.legacy}}}</div>
+            {{else}}
+                {{editor actor.system.variant.legacy target="system.variant.legacy" engine="prosemirror" button=false owner=owner editable=true}}
+            {{/if}}				
+        </div>
+    </div>
+{{/if}}
+
+{{#if (eq actor.system.settings.variant 'inanimae')}}
+    <div class="clearareaBox area-box">
+        <label class="headlineText splatFont" for="data.system.variant.anchor">{{localize "wod.bio.changeling.anchor"}}</label>
+        <div class="clearareaBox">
+            {{#if locked}}
+                <div class="headlineNormal textarea {{#if (eq actor.system.variant.anchor '')}}small{{/if}}">{{{actor.system.variant.anchor}}}</div>
+            {{else}}
+                {{editor actor.system.variant.anchor target="system.variant.anchor" engine="prosemirror" button=false owner=owner editable=true}}
+            {{/if}}				
+        </div>
+    </div>
+{{/if}}

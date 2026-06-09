@@ -1,0 +1,58 @@
+<section class="sheet-setting-body">
+
+	<div class="sheet-headline sheet-banner splatFont"><span class="sheet-banner-text">{{localize "wod.tab.settings"}}</span></div>
+	
+	<nav class="sheet-setting-tabs tabs {{#if (eq actor.system.settings.variant (lowercase config.sheettype.spirit))}}spirit{{/if}}" data-group="secondary">
+		<a class="secondHeadlineTabs thin-border-left" data-tab="attributes">{{localize "wod.attributes.attributes"}}</a>		
+		
+		{{#if (ne actor.system.settings.variant (lowercase config.sheettype.spirit))}}				
+			<a class="secondHeadlineTabs thin-border-left" data-tab="abilities">{{localize "wod.abilities.abilities"}}</a>		
+		{{/if}}
+			
+		{{#if (eqAny actor.type config.sheettype.mortal config.sheettype.mage config.sheettype.exalted config.sheettype.creature config.sheettype.werewolf config.sheettype.changingbreed)}}
+			<a class="secondHeadlineTabs thin-border-left" data-tab="power">{{localize "wod.tab.power"}}</a>				
+		{{/if}}
+
+		{{#if (ne actor.system.settings.variant (lowercase config.sheettype.spirit))}}	
+			<a class="secondHeadlineTabs thin-border-left" data-tab="combat">{{localize 'wod.tab.combat'}}</a>
+		{{/if}}	
+							
+		<a class="secondHeadlineTabs thin-border-left thin-border-right" data-tab="sheetsetting">{{localize 'wod.tab.sheet'}}</a>	
+	</nav>	
+
+	{{!-- Attribute Tab --}}
+	<div class="tab attributes" data-group="secondary" data-tab="attributes">
+
+		{{> "systems/worldofdarkness/templates/actor/parts/settings_attribute.html"}}
+
+	</div>
+
+	{{!-- Abilities Tab --}}
+	<div class="tab abilities" data-group="secondary" data-tab="abilities">
+
+		{{> "systems/worldofdarkness/templates/actor/parts/settings_abilities.html"}}
+
+	</div>
+
+	{{!-- Power Tab --}}
+	<div class="tab power" data-group="secondary" data-tab="power">
+
+		{{> "systems/worldofdarkness/templates/actor/parts/settings_power.html"}}
+
+	</div>	
+
+	{{!-- Combat Tab --}}
+	<div class="tab combat" data-group="secondary" data-tab="combat">
+
+		{{> "systems/worldofdarkness/templates/actor/parts/settings_combat.html"}}
+
+	</div>	
+
+	{{!-- Sheet Tab --}}
+	<div class="tab sheetsetting" data-group="secondary" data-tab="sheetsetting">
+
+		{{> "systems/worldofdarkness/templates/actor/parts/settings_sheet.html"}}
+
+	</div>
+
+</section>

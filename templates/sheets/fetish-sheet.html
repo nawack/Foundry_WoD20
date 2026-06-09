@@ -1,0 +1,116 @@
+<form class="{{cssClass}} {{sheettype}}" autocomplete="off">
+
+	<div class="sheet-item">
+		<header class="sheet-header">
+			<div class="top-area">
+				<div class="clearareaBox top-side">
+					<div class="pullLeft" style="display: flex;">
+
+						{{#if userpermissions.changeItemImage}}
+							<img class="profile-img pointer" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+						{{else}}
+							<img src="{{item.img}}" />
+						{{/if}}
+					</div>
+
+					<div class="pullLeft" style="display: flex; width: 300px;">
+
+						<div class="area-box">
+
+							<div class="top-sidetext">
+								{{#if (eq data.system.type "wod.types.fetish")}} 
+									{{captilize (localize "wod.types.fetish")}}
+								{{/if}}
+								{{#if (eq data.system.type "wod.types.talen")}} 
+									{{captilize (localize "wod.types.talen")}}
+								{{/if}}
+							</div>
+
+							<div class="bioInformationArea floating-label-group">
+								<input class="sheet-infoValues editable" name="name" type="text" value="{{item.name}}" data-dtype="String" autocomplete="off" autofocus required />
+								<span class="floating-label">{{localize 'wod.bio.name'}}</span>
+							</div>													
+						</div>	
+					</div>
+
+					<div class="pullRight" style="width: auto;">
+						{{> "systems/worldofdarkness/templates/actor/parts/profile-img.html"}}		
+					</div>
+				</div>				
+			</div>			
+		</header>
+		
+		<section class="item-body">
+
+			<div class="dialog-area">
+				{{#if userpermissions.itemAdministrator}}
+					<!-- type -->
+					<div class="infobox bioInformationArea floating-label-group">
+						<select class="sheet-infoValues editable" name="system.type" data-dtype="String">
+							{{selectOptions listData.TypeList selected=data.system.type localize=false}}
+						</select>
+						<span class="floating-label">{{localize "wod.labels.type"}}</span>
+					</div>	
+				{{/if}}
+
+				{{#if (eq data.system.type "wod.types.fetish")}}
+					<!-- level -->
+					<div class="infobox bioInformationArea floating-label-group">
+						<select class="sheet-infoValues editable" name="system.level" data-dtype="String">
+							{{selectOptions listData.Level5Value selected=data.system.level localize=false}}
+						</select>
+						<span class="floating-label">{{localize "wod.labels.power.level"}}</span>
+					</div>
+				{{else}}
+					<input type="hidden" name="system.level" value="1" />
+				{{/if}}
+
+				<input type="hidden" name="system.difficulty" value="6" />
+
+				<div class="infobox bioInformationArea floating-label-group">
+					<input class="sheet-infoValues editable" name="system.gnosis" type="text" value="{{data.system.gnosis}}" data-dtype="Number" autocomplete="off" autofocus required />
+					<span class="floating-label">{{localize "wod.advantages.gnosis"}}</span>
+				</div>
+
+				<div class="infobox bioInformationArea floating-label-group">
+					<input class="sheet-infoValues editable" name="system.reference" type="text" value="{{data.system.reference}}" data-dtype="String" autocomplete="off" autofocus required />
+					<span class="floating-label">{{localize "wod.labels.trait.reference"}}</span>
+				</div>
+			</div>
+
+			{{> "systems/worldofdarkness/templates/sheets/parts/item_bonus.html"}}
+
+			<!-- description -->
+			<div class="dialog-area">
+				<div class="clearareaBox">
+					<div class="headlineItem headlineBio splatFont">{{localize "wod.labels.description"}}</div>
+				</div>
+				<div class="infobox">
+
+					{{#if locked}}
+						<div class="headlineNormal textarea">{{{data.system.description}}}</div>					
+					{{else}}
+						{{editor data.system.description target="system.description" engine="prosemirror" button=false owner=owner editable=true}}
+					{{/if}}
+				</div>
+			</div>
+
+			<!-- system -->
+			<div class="dialog-area">
+				<div class="clearareaBox">
+					<div class="headlineItem headlineBio splatFont">{{localize "wod.labels.power.system"}}</div>
+				</div>
+				<div class="infobox">
+
+					{{#if locked}}
+						<div class="headlineNormal textarea">{{{data.system.details}}}</div>					
+					{{else}}
+						{{editor data.system.details target="system.details" engine="prosemirror" button=false owner=owner editable=true}}
+					{{/if}}
+				</div>
+			</div>
+
+		</section>
+
+	</div>
+</form>

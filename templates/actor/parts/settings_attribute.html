@@ -1,0 +1,371 @@
+<div style="margin-top:10px">&nbsp;</div>
+
+{{#if (ne actor.system.settings.variant (lowercase config.sheettype.spirit))}}
+
+    <div class="sheet-area flex-columns">
+        <div class="clearareaBox">
+            <div class="clearareaBox">
+                <div class="pullLeft headlineNormal settings-leftwidth">&nbsp;</div>
+                <div class="pullLeft headlineNormal numberBox">{{localize 'wod.labels.value'}}</div>
+                <div class="pullLeft headlineNormal numberBox">{{localize 'wod.labels.bonus.headline'}}</div>
+                <div class="pullLeft headlineNormal numberBox">{{localize 'wod.labels.total'}}</div>
+                {{#if (ne actor.type config.sheettype.vampire)}}
+                    <div class="pullLeft headlineNormal numberBox">{{localize 'wod.labels.max'}}</div>
+                {{/if}}
+            </div>
+
+            {{#each data.system.attributes as |attribute key|}}
+        
+                {{#if attribute.isvisible}}
+                    <div class="clearareaBox">
+                        <label for="data.system.attributes.{{key}}.value" class="pullLeft headlineNormal settings-leftwidth">{{localize attribute.label}}</label>	
+                        <input class="pullLeft sheet-infoValues numberBox" type="text" value="{{attribute.value}}" readonly />
+                        <input class="pullLeft sheet-infoValues numberBox inputdata {{#if (eq ../locked false)}}editable{{/if}}" type="text" value="{{attribute.bonus}}" name="system.attributes.{{key}}.bonus" 
+                            data-source="attribute"
+                            data-attribute="{{key}}"
+                            data-dtype="Number" {{#if locked}}readonly{{/if}} />
+                        <input class="pullLeft sheet-infoValues numberBox" type="text" value="{{attribute.total}}" readonly />
+                        {{#if (ne ../actor.type ../config.sheettype.vampire)}}
+                            <input class="pullLeft sheet-infoValues numberBox {{#if (eq ../locked false)}}editable{{/if}}" type="text" value="{{attribute.max}}" name="system.attributes.{{key}}.max" 
+                                data-value="{{attribute.max}}" 
+                                data-name="data.system.attributes.{{key}}.max" 
+                                data-dtype="Number" {{#if locked}}readonly{{/if}} />
+                        {{/if}}
+                    </div>
+                {{/if}}
+                
+            {{/each}}
+        </div>
+        <div class="clearareaBox information-area">
+            {{localize 'wod.info.settings.attribute1'}}<br />
+            {{localize 'wod.info.settings.attribute2'}}<br />
+            {{localize 'wod.info.settings.attribute3'}}<br />
+            {{localize 'wod.info.settings.attribute4'}}
+        </div>
+    </div>
+
+{{/if}}
+
+{{#if (and (eq actor.type config.sheettype.vampire) (eq actor.system.settings.variant "general"))}}
+
+    <div class="sheet-area flex-columns">
+        <div class="area-box" data-area="pathsetting">
+            <div class="headlineGroup splatFont">{{localize "wod.labels.settings.path"}}</div>
+            <div class="bioInformationArea floating-label-group">
+                {{#if locked}}
+                    <input class="sheet-infoValues" type="text" value="{{#if (eq actor.system.advantages.path.label 'custom')}}{{actor.system.advantages.path.custom}}{{else}}{{localize data.system.advantages.path.label}}{{/if}}" style="width: 40%;" autocomplete="off" autofocus required  />
+                {{else}}
+                    <select class="sheet-infoValues editable" name="system.advantages.path.label" style="width: 40%;" data-dtype="String">
+                        {{selectOptions listData.PathList selected=data.system.advantages.path.label localize=false}}
+                    </select>
+                    {{#if (eq actor.system.advantages.path.label "custom")}}
+                        <a class="item-edit" title="{{localize 'wod.labels.settings.customizepath'}}" data-type="Bio" data-name="{{localize "wod.labels.settings.selectpath"}}" data-item-id="advantages.path.label" data-custom="{{actor.system.advantages.path.custom}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                    {{/if}}
+                {{/if}}
+                <span class="floating-label">{{localize "wod.labels.settings.selectpath"}}</span>
+            </div>
+        </div>
+
+        <div class="clearareaBox area-box">
+            <div class="bioInformationArea floating-label-group">
+                {{#if locked}}
+                    <input class="sheet-infoValues" type="text" value="{{data.system.advantages.path.bearingtext}}" style="width: 40%;" autocomplete="off" autofocus required />
+                {{else}}
+                    <input class="sheet-infoValues editable" name="system.advantages.path.bearingtext" type="text" value="{{data.system.advantages.path.bearingtext}}" style="width: 40%;" data-name="data.system.advantages.path.bearingtext" data-dtype="String" autocomplete="off" autofocus required />
+                {{/if}}
+                <span class="floating-label">{{localize 'wod.advantages.bearing'}}</span>
+            </div>
+        </div>
+        
+        <div class="area-box">
+            <div class="headlineGroup splatFont">{{localize "wod.advantages.virtue.selected"}}</div>
+            <div class="clearareaBox">
+                <div class="pullLeft half">
+                    {{#if locked}}
+                        <input class="sheet-infoValues" type="text" value="{{localize data.system.advantages.virtues.conscience.label}}" style="width: 80%;" readonly />
+                    {{else}}
+                        <select class="sheet-infoValues editable" name="system.advantages.virtues.conscience.label" style="width: 80%;" data-name="data.system.advantages.virtues.conscience.label" data-type="{{config.sheettype.vampire}}" data-dtype="String">
+                            {{selectOptions listData.Conscience selected=data.system.advantages.virtues.conscience.label localize=false}}
+                        </select>
+                    {{/if}}
+                </div>
+                <div class="pullLeft half">
+                    {{#if locked}}
+                        <input class="sheet-infoValues" type="text" value="{{localize data.system.advantages.virtues.selfcontrol.label}}" style="width: 80%;" readonly />
+                    {{else}}
+                        <select class="sheet-infoValues editable" name="system.advantages.virtues.selfcontrol.label" style="width: 80%;" data-name="data.system.advantages.virtues.selfcontrol.label" data-type="{{config.sheettype.vampire}}" data-dtype="String">
+                            {{selectOptions listData.Selfcontrol selected=data.system.advantages.virtues.selfcontrol.label localize=false}}
+                        </select>
+                    {{/if}}
+                </div>
+            </div>
+            
+            <div class="clearareaBox">
+                
+            </div>
+        </div>        
+    </div>
+
+    
+{{/if}}
+
+{{#if (eqAny actor.type config.sheettype.vampire config.sheettype.werewolf)}}
+
+    <div class="sheet-area flex-columns" data-area="frenzysetting">
+        <div class="clearareaBox">
+            <div class="headlineGroup splatFont">{{localize "wod.labels.settings.frenzyroll"}}</div>
+            <div class="bioInformationArea floating-label-group">
+                {{#if locked}}
+                    <input class="sheet-infoValues inputdata" type="text" value="{{data.system.advantages.rage.bonus}}" style="width: 40%;" autocomplete="off" autofocus required />
+                {{else}}
+                    <input class="sheet-infoValues inputdata editable" name="system.advantages.rage.bonus" type="text" value="{{data.system.advantages.rage.bonus}}" style="width: 40%;" data-source="frenzy" data-name="data.system.advantages.rage.bonus" data-dtype="Number" autocomplete="off" autofocus required />
+                {{/if}}
+                <span class="floating-label">{{localize "wod.labels.settings.frenzybonus"}}</span>
+            </div>
+        </div>
+    </div>
+
+{{/if}}
+
+{{#if (eq actor.type config.sheettype.changingbreed)}}
+    {{#if data.system.settings.hasrage}}
+        
+        <div class="sheet-area flex-columns" data-area="frenzysetting">
+            <div class="clearareaBox" style="height: 80px;">
+                <div class="headlineGroup splatFont">{{localize "wod.labels.settings.frenzyroll"}}</div>
+                <div class="bioInformationArea floating-label-group">
+                    {{#if locked}}
+                        <input class="sheet-infoValues inputdata" type="text" value="{{data.system.advantages.rage.bonus}}" style="width: 40%;" autocomplete="off" autofocus required />
+                    {{else}}
+                        <input class="sheet-infoValues inputdata editable" name="system.advantages.rage.bonus" type="text" value="{{data.system.advantages.rage.bonus}}" style="width: 40%;" data-source="frenzy" data-name="data.system.advantages.rage.bonus" data-dtype="Number" autocomplete="off" autofocus required />
+                    {{/if}}
+                    <span class="floating-label">{{localize "wod.labels.settings.frenzybonus"}}</span>
+                </div>
+            </div>
+        </div>
+
+    {{/if}}
+{{/if}}
+
+{{#if (eqAny actor.type config.sheettype.mortal config.sheettype.creature config.sheettype.changingbreed config.sheettype.werewolf config.sheettype.mage config.sheettype.changeling)}}
+
+    {{#if (ne actor.system.settings.variant (lowercase config.sheettype.spirit))}}
+
+        <div class="sheet-area flex-columns">
+            <div class="clearareaBox">
+                <div class="headlineGroup splatFont">{{localize "wod.labels.settings.usedadvantages"}}</div>
+
+                <div class="clearareaBox row">
+                    <label for="data.system.settings.haspath" class="pullLeft headlineNormal" style="width: 150px;">{{localize 'wod.advantages.path.headline'}}</label>
+                    <div class="switch headlineNormal bold pointer splatFont" data-source="advantages" data-switchtype="haspath" data-type="{{config.sheettype.mortal}}">
+                        {{#if data.system.settings.haspath}}
+                            <i class="icon fa-solid fa-eye"></i>
+                        {{else}}
+                            <i class="icon fa-solid fa-eye-slash"></i>
+                        {{/if}}
+                    </div>
+                </div>
+
+                <div class="clearareaBox row">
+                    <label for="data.system.settings.hasbloodpool" class="pullLeft headlineNormal" style="width: 150px;">{{#if (eq actor.system.settings.variant "earthbound")}}{{localize "wod.advantages.faithpool"}}{{else}}{{localize "wod.advantages.bloodpool"}}{{/if}}</label>
+                    <div class="switch headlineNormal bold pointer splatFont" data-source="advantages" data-switchtype="hasbloodpool" data-type="{{config.sheettype.mortal}}">
+                        {{#if data.system.settings.hasbloodpool}}
+                            <i class="icon fa-solid fa-eye"></i>
+                        {{else}}
+                            <i class="icon fa-solid fa-eye-slash"></i>
+                        {{/if}}
+                    </div>
+                </div>
+
+                <div class="clearareaBox row">
+                    <label for="data.system.settings.hasvirtue" class="pullLeft headlineNormal" style="width: 150px;">{{localize 'wod.advantages.virtue.headline'}}</label>
+                    <div class="switch headlineNormal bold pointer splatFont" data-source="advantages" data-switchtype="hasvirtue" data-type="{{config.sheettype.mortal}}">
+                        {{#if data.system.settings.hasvirtue}}
+                            <i class="icon fa-solid fa-eye"></i>
+                        {{else}}
+                            <i class="icon fa-solid fa-eye-slash"></i>
+                        {{/if}}
+                    </div>
+                </div>
+
+                {{#if (eqAny actor.type config.sheettype.mortal config.sheettype.creature )}}
+                
+                    <div class="clearareaBox row">
+                        <label for="data.system.settings.hasrage" class="pullLeft headlineNormal" style="width: 150px;">{{localize 'wod.advantages.rage'}}</label>
+                        <div class="switch headlineNormal bold pointer splatFont" data-source="advantages" data-switchtype="hasrage" data-type="{{config.sheettype.mortal}}">
+                            {{#if data.system.settings.hasrage}}
+                                <i class="icon fa-solid fa-eye"></i>
+                            {{else}}
+                                <i class="icon fa-solid fa-eye-slash"></i>
+                            {{/if}}
+                        </div>
+                    </div>	
+
+                    <div class="clearareaBox row">
+                        <label for="data.system.settings.hasgnosis" class="pullLeft headlineNormal" style="width: 150px;">{{localize 'wod.advantages.gnosis'}}</label>
+                        <div class="switch headlineNormal bold pointer splatFont" data-source="advantages" data-switchtype="hasgnosis" data-type="{{config.sheettype.mortal}}">
+                            {{#if data.system.settings.hasgnosis}}
+                                <i class="icon fa-solid fa-eye"></i>
+                            {{else}}
+                                <i class="icon fa-solid fa-eye-slash"></i>
+                            {{/if}}
+                        </div>
+                    </div>
+
+                    <div class="clearareaBox row">
+                        <label for="data.system.settings.hasglamour" class="pullLeft headlineNormal" style="width: 150px;">{{localize 'wod.advantages.glamour'}}</label>
+                        <div class="switch headlineNormal bold pointer splatFont" data-source="advantages" data-switchtype="hasglamour" data-type="{{config.sheettype.mortal}}">
+                            {{#if data.system.settings.hasglamour}}
+                                <i class="icon fa-solid fa-eye"></i>
+                            {{else}}
+                                <i class="icon fa-solid fa-eye-slash"></i>
+                            {{/if}}
+                        </div>
+                    </div>
+
+                    <div class="clearareaBox row">
+                        <label for="data.system.settings.hasbanality" class="pullLeft headlineNormal" style="width: 150px;">{{localize 'wod.advantages.banality'}}</label>
+                        <div class="switch headlineNormal bold pointer splatFont" data-source="advantages" data-switchtype="hasbanality" data-type="{{config.sheettype.mortal}}">
+                            {{#if data.system.settings.hasbanality}}
+                                <i class="icon fa-solid fa-eye"></i>
+                            {{else}}
+                                <i class="icon fa-solid fa-eye-slash"></i>
+                            {{/if}}
+                        </div>
+                    </div>
+
+                    <div class="clearareaBox row">
+                        <label for="data.system.settings.hasfaith" class="pullLeft headlineNormal" style="width: 150px;">{{localize 'wod.advantages.faith'}}</label>
+                        <div class="switch headlineNormal bold pointer splatFont" data-source="advantages" data-switchtype="hasfaith" data-type="{{config.sheettype.mortal}}">
+                            {{#if data.system.settings.hasfaith}}
+                                <i class="icon fa-solid fa-eye"></i>
+                            {{else}}
+                                <i class="icon fa-solid fa-eye-slash"></i>
+                            {{/if}}
+                        </div>
+                    </div>
+
+                    <div class="clearareaBox row">
+                        <label for="data.system.settings.haswillpower" class="pullLeft headlineNormal" style="width: 150px;">{{localize 'wod.advantages.willpower'}}</label>
+                        <div class="switch headlineNormal bold pointer splatFont" data-source="advantages" data-switchtype="haswillpower" data-type="{{config.sheettype.mortal}}">
+                            {{#if data.system.settings.haswillpower}}
+                                <i class="icon fa-solid fa-eye"></i>
+                            {{else}}
+                                <i class="icon fa-solid fa-eye-slash"></i>
+                            {{/if}}
+                        </div>
+                    </div>
+
+                    <div class="clearareaBox row">
+                        <label for="data.system.settings.hasquintessence" class="pullLeft headlineNormal" style="width: 150px;">{{localize 'wod.advantages.quintessence'}}</label>
+                        <div class="switch headlineNormal bold pointer splatFont" data-source="advantages" data-switchtype="hasquintessence" data-type="{{config.sheettype.mortal}}">
+                            {{#if data.system.settings.hasquintessence}}
+                                <i class="icon fa-solid fa-eye"></i>
+                            {{else}}
+                                <i class="icon fa-solid fa-eye-slash"></i>
+                            {{/if}}
+                        </div>
+                    </div>
+
+                {{/if}}
+
+                {{#if (eq actor.type config.sheettype.creature)}}
+
+                    <div class="clearareaBox row">
+                        <label for="data.system.settings.hasessence" class="pullLeft headlineNormal" style="width: 150px;">{{localize 'wod.advantages.essence'}}</label>
+                        <div class="switch headlineNormal bold pointer splatFont" data-source="advantages" data-switchtype="hasessence" data-type="{{config.sheettype.mortal}}">
+                            {{#if data.system.settings.hasessence}}
+                                <i class="icon fa-solid fa-eye"></i>
+                            {{else}}
+                                <i class="icon fa-solid fa-eye-slash"></i>
+                            {{/if}}
+                        </div>
+                    </div>
+
+                    <div class="clearareaBox row">
+                        <label for="data.system.settings.hastorment" class="pullLeft headlineNormal" style="width: 150px;">{{localize 'wod.advantages.torment'}}</label>
+                        <div class="switch headlineNormal bold pointer splatFont" data-source="advantages" data-switchtype="hastorment" data-type="{{config.sheettype.mortal}}">
+                            {{#if data.system.settings.hastorment}}
+                                <i class="icon fa-solid fa-eye"></i>
+                            {{else}}
+                                <i class="icon fa-solid fa-eye-slash"></i>
+                            {{/if}}
+                        </div>
+                    </div>
+
+                {{/if}}
+                
+            </div>
+        </div>
+
+        {{#if data.system.settings.hasbloodpool}}
+
+            <div class="sheet-area flex-columns" style="margin-top: 10px;">
+                <div class="clearareaBox">
+                    <div class="headlineGroup splatFont">{{#if (eq actor.system.settings.variant "earthbound")}}{{localize "wod.advantages.faithpool"}}{{else}}{{localize "wod.advantages.bloodpool"}}{{/if}}</div>
+
+                    <div class="clearareaBox">
+                        <label for="data.system.advantages.bloodpool.max" class="pullLeft headlineNormal" style="width: 150px;" 
+                                data-label="{{data.system.advantages.bloodpool.max}}" 
+                                    data-ability="true">{{localize "wod.labels.maxvalue"}}</label>
+                            <input class="pullLeft sheet-infoValues numberBox {{#if (eq locked false)}}editable{{/if}}" 
+                                name="system.advantages.bloodpool.max" 
+                                type="text" 
+                                value="{{data.system.advantages.bloodpool.max}}" 
+                                data-name="data.system.advantages.bloodpool.max" 
+                                data-dtype="Number" {{#if locked}} readonly {{/if}} />
+                    </div>
+
+                    <div class="clearareaBox">
+                        <label for="data.system.advantages.bloodpool.perturn" class="pullLeft headlineNormal" style="width: 150px;" 
+                            data-label="{{data.system.advantages.bloodpool.perturn}}" 
+                                data-ability="true">{{localize "wod.advantages.perturn"}}</label>
+                        <input class="pullLeft sheet-infoValues numberBox {{#if (eq locked false)}}editable{{/if}}" 
+                            name="system.advantages.bloodpool.perturn" 
+                            type="text" 
+                            value="{{data.system.advantages.bloodpool.perturn}}" 
+                            data-name="data.system.advantages.bloodpool.perturn" 
+                            data-dtype="Number" {{#if locked}} readonly {{/if}} />
+                    </div>
+                </div>
+            </div>
+            
+        {{/if}}  
+        
+        {{#if data.system.settings.hasquintessence}}
+
+            <div class="sheet-area flex-columns" style="margin-top: 10px;">
+                <div class="clearareaBox">
+                    <div class="headlineGroup splatFont">{{localize 'wod.advantages.quintessence'}}</div>
+
+                    <div class="clearareaBox">
+                        <label for="data.system.advantages.quintessence.max" class="pullLeft headlineNormal" style="width: 150px;" 
+                                data-label="{{data.system.advantages.quintessence.max}}" 
+                                    data-ability="true">{{localize "wod.labels.maxvalue"}}</label>
+                            <input class="pullLeft sheet-infoValues numberBox {{#if (eq locked false)}}editable{{/if}}" 
+                                name="system.advantages.quintessence.max" 
+                                type="text" 
+                                value="{{data.system.advantages.quintessence.max}}" 
+                                data-name="data.system.advantages.quintessence.max" 
+                                data-dtype="Number" {{#if locked}} readonly {{/if}} />
+                    </div>
+                </div>
+            </div>
+            
+        {{/if}}
+    {{/if}} 
+{{/if}}		
+
+{{#if (eq actor.type config.sheettype.creature)}}
+    {{#if data.system.settings.hasessence}}
+
+        <div class="sheet-area flex-columns">
+            <div class="headlineGroup splatFont">{{localize 'wod.labels.settings.essencevalue'}}</div>
+            <div class="infobox bioInformationArea floating-label-group">
+                <input class="sheet-infoValues numberBox editable" name="system.advantages.essence.max" type="text" value="{{data.system.advantages.essence.max}}" data-name="data.system.advantages.essence.max" data-dtype="Number" autocomplete="off" autofocus required />
+                <span class="floating-label">{{localize "wod.advantages.essence"}}</span>
+            </div>
+        </div>       
+
+    {{/if}}
+{{/if}}

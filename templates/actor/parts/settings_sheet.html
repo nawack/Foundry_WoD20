@@ -1,0 +1,147 @@
+<div style="margin-top:10px">&nbsp;</div>
+
+{{#if (eqAny actor.type config.sheettype.mortal config.sheettype.creature config.sheettype.changingbreed config.sheettype.changeling config.sheettype.vampire config.sheettype.wraith config.sheettype.exalted)}}
+
+    <div class="sheet-area flex-columns">
+        <div class="headlineGroup splatFont">{{localize "wod.dialog.variant.sheettype"}}</div>
+
+        {{#if (and (ne actor.type config.sheettype.changingbreed) (ne actor.type config.sheettype.exalted))}}
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'general'}}" data-value="general">{{localize "wod.dialog.variant.general"}}</button>
+        {{/if}}
+
+        {{#if (eq actor.type config.sheettype.creature)}}
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'chimera'}}" data-value="chimera">{{localize config.variant.creature.chimera}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'familiar'}}" data-value="familiar">{{localize config.variant.creature.familiar}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'construct'}}" data-value="construct">{{localize config.variant.creature.construct}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'spirit'}}" data-value="spirit">{{localize config.variant.creature.spirit}}</button>  
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'warwolves'}}" data-value="warwolves">{{localize config.variant.creature.warwolves}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'anurana'}}" data-value="anurana">{{localize config.variant.creature.anurana}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'samsa'}}" data-value="samsa">{{localize config.variant.creature.samsa}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'kerasi'}}" data-value="kerasi">{{localize config.variant.creature.kerasi}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'yeren'}}" data-value="yeren">{{localize config.variant.creature.yeren}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'earthbound'}}" data-value="earthbound">{{localize config.variant.creature.earthbound}}</button>
+        {{/if}}
+
+        {{#if (eq actor.type config.sheettype.mortal)}}
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'orpheus'}}" data-value="orpheus">{{localize config.variant.mortal.orpheus}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'sorcerer'}}" data-value="sorcerer">{{localize config.variant.mortal.sorcerer}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'autumnpeople'}}" data-value="autumnpeople">{{localize config.variant.mortal.autumnpeople}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'enchanted'}}" data-value="enchanted">{{localize config.variant.mortal.enchanted}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'ghoul'}}" data-value="ghoul">{{localize config.variant.mortal.ghoul}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'kinfolk'}}" data-value="kinfolk">{{localize config.variant.mortal.kinfolk}}</button>        
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'truefaith'}}" data-value="truefaith">{{localize config.variant.mortal.truefaith}}</button>
+        {{/if}}     
+
+        {{#if (eq actor.type config.sheettype.vampire)}}
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'kindredeast'}}" data-value="kindredeast">{{localize config.variant.vampire.kindredeast}}</button>
+        {{/if}}
+        
+        {{#if (eq actor.type config.sheettype.changingbreed)}}
+            <div>
+                <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.changingbreed 'Ajaba'}}" data-value="Ajaba">{{localize 'wod.bio.feraname.ajaba'}}</button>
+                <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.changingbreed 'Ananasi'}}" data-value="Ananasi">{{localize 'wod.bio.feraname.ananasi'}}</button>
+                <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.changingbreed 'Bastet'}}" data-value="Bastet">{{localize 'wod.bio.feraname.bastet'}}</button>
+                <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.changingbreed 'Corax'}}" data-value="Corax">{{localize 'wod.bio.feraname.corax'}}</button>
+                <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.changingbreed 'Gurahl'}}" data-value="Gurahl">{{localize 'wod.bio.feraname.gurahl'}}</button>				
+                <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.changingbreed 'Kitsune'}}" data-value="Kitsune">{{localize 'wod.bio.feraname.kitsune'}}</button>	
+                <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.changingbreed 'Mokole'}}" data-value="Mokole">{{localize 'wod.bio.feraname.mokole'}}</button>
+                <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.changingbreed 'Nagah'}}" data-value="Nagah">{{localize 'wod.bio.feraname.nagah'}}</button>
+                <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.changingbreed 'Nuwisha'}}" data-value="Nuwisha">{{localize 'wod.bio.feraname.nuwisha'}}</button>
+                <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.changingbreed 'Ratkin'}}" data-value="Ratkin">{{localize 'wod.bio.feraname.ratkin'}}</button>
+                <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.changingbreed 'Rokea'}}" data-value="Rokea">{{localize 'wod.bio.feraname.rokea'}}</button>
+            </div>
+            <div class="headlineGroup splatFont">{{localize 'wod.dialog.variant.lostbreeds'}}</div>
+            <div>
+                <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.changingbreed 'Apis'}}" data-value="Apis">{{localize 'wod.bio.feraname.apis'}}</button>
+                <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.changingbreed 'Camazotz'}}" data-value="Camazotz">{{localize 'wod.bio.feraname.camazotz'}}</button>
+                <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.changingbreed 'Grondr'}}" data-value="Grondr">{{localize 'wod.bio.feraname.grondr'}}</button>
+                <!-- <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'Khara'}}">Khara</button>
+                <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'Okuma'}}">Okuma</button>
+                <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'Ao'}}">Ao</button> -->
+            </div>
+        {{/if}}
+
+        {{#if (eq actor.type config.sheettype.changeling)}}
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'dauntain'}}" data-value="dauntain">{{localize config.variant.changeling.dauntain}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'thallain'}}" data-value="thallain">{{localize config.variant.changeling.thallain}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'nunnehi'}}" data-value="nunnehi">{{localize config.variant.changeling.nunnehi}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'menehune'}}" data-value="menehune">{{localize config.variant.changeling.menehune}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'inanimae'}}" data-value="inanimae">{{localize config.variant.changeling.inanimae}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'darkkin'}}" data-value="darkkin">{{localize config.variant.changeling.darkkin}}</button>
+        {{/if}}
+
+        {{#if (eq actor.type config.sheettype.wraith)}}
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'shadow'}}" data-value="shadow">{{localize config.variant.wraith.shadow}}</button>
+        {{/if}}
+
+        {{#if (eq actor.type config.sheettype.exalted)}}
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'solar'}}" data-value="solar">{{localize config.variant.exalted.solar}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'lunar'}}" data-value="lunar">{{localize config.variant.exalted.lunar}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'dragon'}}" data-value="dragon">{{localize config.variant.exalted.dragon}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'sidereal'}}" data-value="sidereal">{{localize config.variant.exalted.sidereal}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'abyssal'}}" data-value="abyssal">{{localize config.variant.exalted.abyssal}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'infernal'}}" data-value="infernal">{{localize config.variant.exalted.infernal}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'alchemical'}}" data-value="alchemical">{{localize config.variant.exalted.alchemical}}</button>
+            <button class="dialog-three-button fullSplatColor button variantbutton {{isActive actor.system.settings.variant 'liminal'}}" data-value="liminal">{{localize config.variant.exalted.liminal}}</button>
+        {{/if}}
+
+        <div class="clearareaBox information-area">
+            {{localize "wod.dialog.variant.info"}}
+        </div>
+    </div>
+
+{{/if}}
+
+{{#if (and (eqAny actor.type config.sheettype.mortal config.sheettype.mage config.sheettype.vampire config.sheettype.werewolf) (eqAny actor.system.settings.variant "general" ""))}}
+
+    <div class="sheet-area flex-columns">
+        <div class="headlineGroup splatFont">{{localize "wod.labels.settings.era.headline"}}</div>
+
+        {{#if (eqAny actor.type config.sheettype.mortal config.sheettype.vampire)}}
+            <button class="dialog-three-button fullSplatColor button sheet_modern {{#if (eq actor.system.settings.era config.era.modern)}}active{{/if}}" data-type="{{config.sheettype.vampire}}">{{localize "wod.labels.settings.era.modern"}}</button>
+            <button class="dialog-three-button fullSplatColor button sheet_victorian {{#if (eq actor.system.settings.era config.era.victorian)}}active{{/if}}" data-type="{{config.sheettype.vampire}}">{{localize "wod.labels.settings.era.victorian"}}</button>
+            <button class="dialog-three-button fullSplatColor button sheet_darkages {{#if (eq actor.system.settings.era config.era.darkages)}}active{{/if}}" data-type="{{config.sheettype.vampire}}">{{localize "wod.labels.settings.era.darkages"}}</button>
+            <button class="dialog-three-button fullSplatColor button sheet_classical {{#if (eq actor.system.settings.era config.era.classical)}}active{{/if}}" data-type="{{config.sheettype.vampire}}">{{localize "wod.labels.settings.era.classical"}}</button>
+            <button class="dialog-three-button fullSplatColor button sheet_livinggods {{#if (eq actor.system.settings.era config.era.livinggods)}}active{{/if}}" data-type="{{config.sheettype.vampire}}">{{localize "wod.labels.settings.era.livinggods"}}</button>
+        {{/if}}
+        {{#if (eqAny actor.type config.sheettype.mage)}}
+            <button class="dialog-three-button fullSplatColor button sheet_modern {{#if (eq actor.system.settings.era config.era.modern)}}active{{/if}}" data-type="{{config.sheettype.mage}}">{{localize "wod.labels.settings.era.modern"}}</button>
+            <button class="dialog-three-button fullSplatColor button sheet_victorian {{#if (eq actor.system.settings.era config.era.victorian)}}active{{/if}}" data-type="{{config.sheettype.mage}}">{{localize "wod.labels.settings.era.victorian"}}</button>
+        {{/if}}
+        {{#if (eqAny actor.type config.sheettype.werewolf)}}
+            <button class="dialog-three-button fullSplatColor button sheet_modern {{#if (eq actor.system.settings.era config.era.modern)}}active{{/if}}" data-type="{{config.sheettype.werewolf}}">{{localize "wod.labels.settings.era.modern"}}</button>
+            <button class="dialog-three-button fullSplatColor button sheet_victorian {{#if (eq actor.system.settings.era config.era.victorian)}}active{{/if}}" data-type="{{config.sheettype.werewolf}}">{{localize "wod.labels.settings.era.wildwest"}}</button>
+            <button class="dialog-three-button fullSplatColor button sheet_darkages {{#if (eq actor.system.settings.era config.era.darkages)}}active{{/if}}" data-type="{{config.sheettype.werewolf}}">{{localize "wod.labels.settings.era.darkages"}}</button>
+        {{/if}}
+
+        <div class="clearareaBox information-area">
+            {{localize "wod.labels.settings.era.infoone"}}<br />
+            {{localize "wod.labels.settings.era.infotwo"}}
+        </div>
+    </div>
+
+{{/if}}
+
+<div class="sheet-area flex-columns">
+    <div class="headlineGroup splatFont">{{localize "wod.labels.settings.graphics"}}</div>
+
+    <div class="clearareaBox">
+        <div class="pullLeft headlineNormal settings-leftwidth">{{localize "wod.labels.settings.sheetfont"}}</div>
+        <div class="pullLeft switch settings-leftwidth settings-verticalcenter bold centerText pointer splatFont" data-source="usesplatfont" data-type="{{config.sheettype.mortal}}">
+            {{#if data.system.settings.usesplatfont}}
+                {{localize "wod.labels.yes"}}
+            {{else}}
+                {{localize "wod.labels.no"}}
+            {{/if}}
+        </div>
+    </div>
+    <div class="clearareaBox">
+        <div class="pullLeft headlineNormal settings-leftwidth">{{localize "wod.labels.settings.dice"}}</div>
+        <div class="pullLeft settings-verticalcenter bold" data-type="{{config.sheettype.mortal}}">
+            <select class="sheet-infoValues selectAbilityMaxSetting editable" name="system.settings.dicesetting" data-source="setvalue" data-type="{{config.sheettype.mortal}}" data-dtype="String">
+                {{selectOptions listData.Games selected=data.system.settings.dicesetting localize=false}}
+            </select>
+        </div>				
+    </div>
+    <div class="clearareaBox information-area">{{localize "wod.labels.settings.dicehint"}}</div>
+</div>

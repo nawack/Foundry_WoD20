@@ -1,0 +1,133 @@
+.vampireDialog,
+.vampire,
+.vampireItem {
+  --main-full-color: var(--main-vampire-color);
+  --main-mid-color: var(--main-vampire-mid-color);
+  --main-dim-color: var(--main-vampire-dim-color);
+  --color-shadow-primary: var(--main-vampire-color);
+
+  /* Splat-specific font-size defaults (tweak per splat if needed) */
+  --wod-font-xxs: 0.4375rem;   /* 7px */
+  --wod-font-xs: 0.625rem;     /* 10px */
+  --wod-font-sm: 0.75rem;      /* 12px */
+  --wod-font-md: 0.875rem;     /* 14px */
+  --wod-font-base: 1rem;       /* 16px */
+  --wod-font-lg: 1.125rem;     /* 18px */
+  --wod-font-xl: 1.25rem;      /* 20px */
+  --wod-font-xxl: 1.5rem;      /* 24px */
+
+  /* Overrides to preserve current hard-coded sizes in this splat */
+  --wod-font-sheet-headline: 1.875rem; /* 30px (.sheet-headline) */
+  --wod-font-headline-group: 1.75rem; /* 28px (dialog .headlineGroup) */
+  --wod-font-second-headline-tabs: 1.625rem; /* 26px */
+  --wod-font-headline: 1.25rem; /* 20px (dialog .headline) */
+} 
+
+.vampire {
+  --sheet-background-color: var(--vampire-page-background);
+}
+
+.vampire .modern {
+  --main-wod-banner: var(--vampire-banner-background);
+  --main-wod-banner-small: var(--vampire-banner-small-background);
+}
+
+.vampire .victorian {
+  --main-wod-banner: var(--vampire-banner-background);
+  --main-wod-banner-small: var(--vampire-banner-small-background);
+}
+
+.vampire .darkages {
+  --main-wod-banner: var(--vampire-banner-background);
+  --main-wod-banner-small: var(--vampire-banner-small-background);
+}
+
+.vampire:not(.noSplatFont) .headlineTabs {
+    line-height: 25px;
+}
+  
+.vampire:not(.noSplatFont) .sheet-headline {
+    font-size: var(--wod-font-sheet-headline);
+}
+
+.vampire:not(.noSplatFont) .sheet-banner {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.vampire:not(.noSplatFont) .headlineGroup {
+  font-weight: normal;
+}
+
+.vampire:not(.noSplatFont) .headlineText {
+  font-weight: normal;
+}
+
+.vampire:not(.noSplatFont) .headlineRow {
+  font-weight: normal;
+}
+
+.vampire:not(.noSplatFont) .headlineList {
+  font-weight: normal;
+  font-size: var(--wod-font-base);
+} 
+
+.vampire:not(.noSplatFont) .combat-concealBox {
+  width: 60px;
+}
+
+.vampire:not(.noSplatFont) .sheet-banner-small {
+  margin-bottom: 0px;
+}
+  
+.vampireDialog:not(.noSplatFont) .headlineGroup {
+  font-size: var(--wod-font-headline-group);
+}
+
+.vampire:not(.noSplatFont) nav,
+.vampire:not(.noSplatFont) .splatFont,
+.vampireDialog:not(.noSplatFont) .splatFont,
+.vampireItem:not(.noSplatFont) .splatFont {
+	font-family: "vampire", var(--main-font);
+}
+
+.vampire:not(.noSplatFont) .experienceValue {
+  font-size: var(--wod-font-lg);
+} 
+
+.ghoul:not(.noSplatFont) .experienceValue {
+  font-size: var(--wod-font-second-headline-tabs);
+  margin-top: 15px;
+}
+
+.ghoul:not(.noSplatFont) .secondHeadlineTabs {
+  font-size: var(--wod-font-headline) !important;
+}
+
+.ghoul .secondHeadlineTabs {
+  width: 20% !important;
+} 
+
+/* COMBAT */
+
+.vampire .combat-armor-itemlist .width-valuebox {
+    width: 60px;
+}
+
+/* START - Discipline */
+
+
+
+/* END - Discipline */
+
+/* SETTINGS */
+
+.wod20.vampire .secondHeadlineTabs {
+  width: 25%;
+}
+
+/* DIALOG */
+
+.vampireDialog:not(.noSplatFont) .headline {
+  font-size: var(--wod-font-headline);
+}

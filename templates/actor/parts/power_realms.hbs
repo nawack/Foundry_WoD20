@@ -1,0 +1,51 @@
+<div class="sheet-area flex-columns">
+
+	<div class="sheet-headline sheet-banner splatFont">
+		<span class="sheet-banner-text">{{localize 'wod.realms.headline'}}</span>
+	</div>
+
+	<div class="pc-power-realms">
+		{{#each realms as |realm index|}}
+
+			{{#if (eq (mod index 3) 0)}}<div class="magic-statArea pullLeft">{{/if}}
+
+			<div class="sphere-itemlist">
+				<div class="headlineNormal sphere-itemlist {{#if (eq realm.system.label ../actor.system.bio.splatfields.affinityrealm.value)}}highlightedPowerRow{{/if}}" style="width: 100%;">
+					<div class="spheres-headlineWidth headlineNormalSpheres splatFont" 
+						{{#if (eq realm.system.label ../actor.system.bio.splatfields.affinityrealm.value)}}
+							title="{{localize 'wod.bio.changeling.affinity'}}"
+						{{/if}}>
+						{{localize realm.system.label}}
+					</div>
+
+					<div class="resource-value" 
+						data-itemid="{{realm._id}}"
+						data-key="{{realm.system.id}}"
+						data-value="{{realm.system.value}}" 
+						data-name="system.value">
+
+						{{#numLoop realm.system.max}}					
+							<span class="resource-value-step" data-action="editDot" data-type="{{../../config.sheettype.mage}}" data-index="{{this}}" data-itemid="{{realm._id}}" data-ability="core"></span>					
+						{{/numLoop}}						
+						
+					</div>
+					{{#if (eq ../locked false)}}
+						<div class="iconBox">							
+							{{> "systems/worldofdarkness/templates/actor/parts/list_icons.hbs" showedit=true item=realm locked=../locked edittitle="wod.labels.edit.realm" collapseclass="power"}}
+						</div>
+					{{/if}}
+				</div>	
+					
+			</div>
+			<div class="description" data-itemid="{{realm._id}}">
+
+				{{{getToolTip_v2 realm.system.description "" realm.system.bonuslist ../actor}}}
+
+			</div>
+
+			{{#if (eq (mod index 3) 2)}}</div>{{/if}}
+		
+		{{/each}}	
+	</div> 
+
+</div>

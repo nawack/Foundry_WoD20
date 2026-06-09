@@ -1,0 +1,434 @@
+<form class="{{cssClass}} {{sheettype}}" autocomplete="off">
+	
+	<div class="sheet-item">
+
+		<header class="sheet-header">
+			<div class="top-area">
+				<div class="clearareaBox top-side">
+					<div class="pullLeft" style="display: flex;">
+
+						{{#if userpermissions.changeItemImage}}
+							<img class="profile-img pointer" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+						{{else}}
+							<img src="{{item.img}}" />
+						{{/if}}
+					</div>
+
+					<div class="pullLeft" style="display: flex; width: 300px;">
+
+						<div class="area-box">
+
+							<div class="top-sidetext">
+								{{#if (eq data.system.type "wod.types.art")}} 
+									{{captilize (localize "wod.types.art")}}
+								{{/if}}
+
+								{{#if (eq data.system.type "wod.types.artpower")}} 
+									{{captilize (localize "wod.types.artpower")}}<br />
+									{{captilize (localize "wod.labels.level")}} {{data.system.level}}
+								{{/if}}
+
+								{{#if (eq data.system.type "wod.types.discipline")}} 
+									{{captilize (localize "wod.types.discipline")}}
+								{{/if}}
+
+								{{#if (eq data.system.type "wod.types.disciplinepower")}} 
+									{{captilize (localize "wod.types.disciplinepower")}}<br />
+									{{captilize (localize "wod.labels.level")}} {{data.system.level}}
+								{{/if}}
+
+								{{#if (eq data.system.type "wod.types.combination")}} 
+									{{captilize (localize "wod.types.combination")}}
+								{{/if}}
+
+								{{#if (eq data.system.type "wod.types.edge")}} 
+									{{captilize (localize "wod.types.edge")}}
+								{{/if}}
+
+								{{#if (eq data.system.type "wod.types.edgepower")}} 
+									{{captilize (localize "wod.types.edgepower")}}<br />
+									{{captilize (localize "wod.labels.level")}} {{data.system.level}}
+								{{/if}}
+
+								{{#if (eq data.system.type "wod.types.lore")}} 
+									{{captilize (localize "wod.types.lore")}}
+								{{/if}}
+
+								{{#if (eq data.system.type "wod.types.lorepower")}} 
+									{{captilize (localize "wod.types.lorepower")}}<br />
+									{{captilize (localize "wod.labels.level")}} {{data.system.level}}
+								{{/if}}
+
+								{{#if (eq data.system.type "wod.types.arcanoi")}} 
+									{{captilize (localize "wod.types.arcanoi")}}
+								{{/if}}
+
+								{{#if (eq data.system.type "wod.types.arcanoipower")}} 
+									{{captilize (localize "wod.types.arcanoipower")}}<br />
+									{{captilize (localize "wod.labels.level")}} {{data.system.level}}
+								{{/if}}
+
+								{{#if (eq data.system.type "wod.types.ritual")}} 
+									{{captilize (localize "wod.types.ritual")}}<br />
+									{{captilize (localize "wod.labels.level")}} {{data.system.level}}
+								{{/if}}
+
+								{{#if (eq data.system.type "wod.types.gift")}} 
+									{{captilize (localize "wod.types.gift")}}<br />
+									{{captilize (localize "wod.labels.rank")}} {{data.system.level}}
+								{{/if}}
+
+								{{#if (eq data.system.type "wod.types.rite")}} 
+									{{captilize (localize "wod.types.rite")}}<br />
+									{{captilize (localize "wod.labels.rank")}}  {{data.system.level}}
+								{{/if}}
+
+								{{#if (eq data.system.type "wod.types.charm")}} 
+									{{captilize (localize "wod.types.charm")}}
+								{{/if}}
+
+								{{#if (eq data.system.type "wod.types.stain")}} 
+									{{captilize (localize "wod.types.stain")}}
+								{{/if}}
+
+								{{#if (eq data.system.type "wod.types.horror")}} 
+									{{captilize (localize "wod.types.horror")}}
+								{{/if}}
+
+								{{#if (eq data.system.type "wod.types.hekau")}} 
+									{{captilize (localize "wod.types.hekau")}}
+								{{/if}}
+
+								{{#if (eq data.system.type "wod.types.hekaupower")}} 
+									{{captilize (localize "wod.types.hekaupower")}}<br />
+									{{captilize (localize "wod.labels.level")}} {{data.system.level}}
+								{{/if}}
+
+								{{#if (eq data.system.type "wod.types.numina")}} 
+									{{captilize (localize "wod.types.numina")}}
+								{{/if}}
+
+								{{#if (eq data.system.type "wod.types.numinapower")}} 
+									{{captilize (localize "wod.types.numinapower")}}<br />
+									{{captilize (localize "wod.labels.level")}} {{data.system.level}}
+								{{/if}}
+
+								{{#if (eq data.system.type "wod.types.power")}} 
+									{{captilize (localize "wod.types.power")}}
+								{{/if}}
+
+								{{#if (eq data.system.type "wod.types.exaltedcharm")}} 
+									{{captilize (localize "wod.types.exaltedcharm")}} {{data.system.level}}
+								{{/if}}
+							</div>
+
+							<div class="bioInformationArea floating-label-group">
+								<input class="sheet-infoValues editable" name="name" type="text" value="{{item.name}}" data-dtype="String" autocomplete="off" autofocus required />
+								<span class="floating-label">{{localize 'wod.bio.name'}}</span>
+							</div>	
+
+							{{#if (and hasActor (eq data.system.parentid ""))}}
+								{{#if (eq data.system.type "wod.types.discipline")}}
+									<div class="bioInformationArea floating-label-group">
+										<select class="sheet-infoValues editable" name="system.level" data-dtype="Number">
+											{{selectOptions listData.ZeroToNine selected=data.system.level localize=false}}
+										</select>
+										<span class="floating-label">{{localize "wod.labels.settings.power.bonusmaxrating"}}</span>
+									</div>
+								{{/if}}
+							{{/if}}
+						</div>	
+					</div>
+
+					<div class="pullRight" style="width: auto;">
+						{{> "systems/worldofdarkness/templates/actor/parts/profile-img.html"}}		
+					</div>
+				</div>				
+			</div>			
+		</header>
+		
+		<section class="item-body">
+
+			<div class="dialog-area">
+			
+				{{#if userpermissions.itemAdministrator}}
+
+					<!-- Game -->
+					<div class="infobox bioInformationArea floating-label-group">
+						<select class="sheet-infoValues editable" name="system.game" data-dtype="String">
+							{{selectOptions listData.Games selected=data.system.game localize=false}}
+						</select>
+						<span class="floating-label">{{localize "wod.games.headline"}}</span>
+					</div>
+
+					<!-- type -->
+					<div class="infobox bioInformationArea floating-label-group">
+						<select class="sheet-infoValues editable" name="system.type" data-dtype="String">
+							{{selectOptions listData.Types selected=data.system.type localize=false}}
+						</select>
+						<span class="floating-label">{{localize "wod.labels.type"}}</span>
+					</div>
+				{{/if}}	
+					
+				{{#if (eq data.system.type "wod.types.disciplinepower")}}
+					{{#if (eq hasActor false)}}
+						<div class="infobox bioInformationArea floating-label-group">
+							<select class="sheet-infoValues editable" name="system.parentid" data-dtype="String">
+								{{selectOptions listData.Disciplines selected=data.system.parentid localize=false}}
+							</select>
+							<span class="floating-label">{{localize "wod.types.discipline"}}</span>
+						</div>
+					{{/if}}
+
+					<div class="infobox bioInformationArea floating-label-group">
+						<select class="sheet-infoValues editable" name="system.level" data-dtype="Number">
+							{{selectOptions listData.Level9Value selected=data.system.level localize=false}}
+						</select>
+						<span class="floating-label">{{localize "wod.labels.power.level"}}</span>
+					</div>					
+				{{/if}}
+
+				{{#if (eq data.system.type "wod.types.ritual")}}
+					{{#if (eq data.system.game "vampire")}}
+						<div class="infobox bioInformationArea floating-label-group">
+							<select class="sheet-infoValues editable" name="system.level" data-dtype="Number">
+								{{selectOptions listData.Level9Value selected=data.system.level localize=false}}
+							</select>
+							<span class="floating-label">{{localize "wod.labels.power.level"}}</span>
+						</div>	
+						
+						<div class="infobox bioInformationArea floating-label-group">
+							<select class="sheet-infoValues editable" name="system.category" data-dtype="String">
+								{{selectOptions listData.RitualCategories selected=data.system.category localize=false}}	
+							</select>
+							<span class="floating-label">{{localize "wod.power.ritualcategory"}}</span>
+						</div>
+					{{/if}}
+					{{#if (eq data.system.game "demon")}}
+						<div class="infobox bioInformationArea floating-label-group">
+							<select class="sheet-infoValues editable" name="system.level" data-dtype="Number">
+								{{selectOptions listData.Level5Value selected=data.system.level localize=false}}
+							</select>
+							<span class="floating-label">{{localize "wod.labels.power.level"}}</span>
+						</div>						
+					{{/if}}
+				{{/if}}
+
+				{{#if (eq data.system.type "wod.types.gift")}}
+					<div class="infobox bioInformationArea floating-label-group">
+						<select class="sheet-infoValues editable" name="system.level" data-dtype="Number">
+							{{selectOptions listData.Level6Value selected=data.system.level localize=false}}
+						</select>
+						<span class="floating-label">{{localize "wod.labels.power.level"}}</span>
+					</div>					
+				{{/if}}
+
+				{{#if (eq data.system.type "wod.types.rite")}}
+					<div class="infobox bioInformationArea floating-label-group">
+						<select class="sheet-infoValues editable" name="system.level" data-dtype="Number">
+							{{selectOptions listData.Level6Value selected=data.system.level localize=false}}
+						</select>
+						<span class="floating-label">{{localize "wod.labels.power.level"}}</span>
+					</div>
+				{{/if}}
+
+				{{#if (eq data.system.type "wod.types.artpower")}}
+					{{#if (eq hasActor false)}}
+						<div class="infobox bioInformationArea floating-label-group">
+							<select class="sheet-infoValues editable" name="system.parentid" data-dtype="String">
+								{{selectOptions listData.Arts selected=data.system.parentid localize=false}}
+							</select>
+							<span class="floating-label">{{localize "wod.types.art"}}</span>
+						</div>
+					{{/if}}
+
+					<div class="infobox bioInformationArea floating-label-group">
+						<select class="sheet-infoValues editable" name="system.level" data-dtype="Number">
+							{{selectOptions listData.Level5Value selected=data.system.level localize=false}}
+						</select>
+						<span class="floating-label">{{localize "wod.labels.power.level"}}</span>
+					</div>
+
+					<div class="infobox bioInformationArea floating-label-group">
+						<select class="sheet-infoValues editable" name="system.arttype" data-dtype="String">
+							{{selectOptions listData.ArtTypes selected=data.system.arttype localize=false}}
+						</select>
+						<span class="floating-label">{{localize "wod.dialog.power.arttype"}}</span>
+					</div>
+				{{/if}}
+
+				{{#if (eq data.system.type "wod.types.edgepower")}}
+					{{#if (eq hasActor false)}}
+						<div class="infobox bioInformationArea floating-label-group">
+							<select class="sheet-infoValues editable" name="system.parentid" data-dtype="String">
+								{{selectOptions listData.Edges selected=data.system.parentid localize=false}}
+							</select>
+							<span class="floating-label">{{localize "wod.types.edge"}}</span>
+						</div>
+					{{/if}}
+
+					<div class="infobox bioInformationArea floating-label-group">
+						<select class="sheet-infoValues editable" name="system.level" data-dtype="Number">
+							{{selectOptions listData.Level5Value selected=data.system.level localize=false}}
+						</select>
+						<span class="floating-label">{{localize "wod.labels.power.level"}}</span>
+					</div>
+				{{/if}}
+
+				{{#if (eq data.system.type "wod.types.lorepower")}}
+					{{#if (eq hasActor false)}}
+						<div class="infobox bioInformationArea floating-label-group">
+							<select class="sheet-infoValues editable" name="system.parentid" data-dtype="String">
+								{{selectOptions listData.Lores selected=data.system.parentid localize=false}}
+							</select>
+							<span class="floating-label">{{localize "wod.types.lore"}}</span>
+						</div>
+					{{/if}}
+
+					<div class="infobox bioInformationArea floating-label-group">
+						<select class="sheet-infoValues editable" name="system.level" data-dtype="Number">
+							{{selectOptions listData.Level5Value selected=data.system.level localize=false}}
+						</select>
+						<span class="floating-label">{{localize "wod.labels.power.level"}}</span>
+					</div>
+				{{/if}}
+
+				{{#if (eq data.system.type "wod.types.arcanoipower")}}
+					{{#if (eq hasActor false)}}
+						<div class="infobox bioInformationArea floating-label-group">
+							<select class="sheet-infoValues editable" name="system.parentid" data-dtype="String">
+								{{selectOptions listData.Arcanoi selected=data.system.parentid localize=false}}
+							</select>
+							<span class="floating-label">{{localize "wod.types.arcanoi"}}</span>
+						</div>
+					{{/if}}
+
+					<div class="infobox bioInformationArea floating-label-group">
+						<select class="sheet-infoValues editable" name="system.level" data-dtype="Number">
+							{{selectOptions listData.Level5Value selected=data.system.level localize=false}}
+						</select>
+						<span class="floating-label">{{localize "wod.labels.power.level"}}</span>
+					</div>
+				{{/if}}
+
+				{{#if (eq data.system.type "wod.types.hekaupower")}}
+					{{#if (eq hasActor false)}}
+						<div class="infobox bioInformationArea floating-label-group">
+							<select class="sheet-infoValues editable" name="system.parentid" data-dtype="String">
+								{{selectOptions listData.Hekau selected=data.system.parentid localize=false}}
+							</select>
+							<span class="floating-label">{{localize "wod.types.arcanoi"}}</span>
+						</div>
+					{{/if}}
+
+					<div class="infobox bioInformationArea floating-label-group">
+						<select class="sheet-infoValues editable" name="system.level" data-dtype="Number">
+							{{selectOptions listData.Level9Value selected=data.system.level localize=false}}
+						</select>
+						<span class="floating-label">{{localize "wod.labels.power.level"}}</span>
+					</div>
+				{{/if}}
+
+				{{#if (eq data.system.type "wod.types.numinapower")}}
+					{{#if (eq hasActor false)}}
+						<div class="infobox bioInformationArea floating-label-group">
+							<select class="sheet-infoValues editable" name="system.parentid" data-dtype="String">
+								{{selectOptions listData.Numina selected=data.system.parentid localize=false}}
+							</select>
+							<span class="floating-label">{{localize "wod.types.numina"}}</span>
+						</div>
+					{{/if}}
+
+					<div class="infobox bioInformationArea floating-label-group">
+						<select class="sheet-infoValues editable" name="system.level" data-dtype="Number">
+							{{selectOptions listData.Level5Value selected=data.system.level localize=false}}
+						</select>
+						<span class="floating-label">{{localize "wod.labels.power.level"}}</span>
+					</div>
+				{{/if}}
+
+				{{#if (eq data.system.type "wod.types.exaltedcharm")}}
+					<div class="infobox bioInformationArea floating-label-group">
+						<select class="sheet-infoValues editable" name="system.level" data-dtype="Number">
+							{{selectOptions listData.Level5Value selected=data.system.level localize=false}}
+						</select>
+						<span class="floating-label">{{localize "wod.labels.power.level"}}</span>
+					</div>	
+					
+					<div class="infobox bioInformationArea floating-label-group">
+						<select class="sheet-infoValues editable" name="system.charmtype" data-dtype="String">
+							{{selectOptions listData.ExaltedCharmTypes selected=data.system.charmtype localize=false}}	
+						</select>
+						<span class="floating-label">{{localize "wod.labels.power.charmtypes"}}</span>
+					</div>				
+				{{/if}}
+
+				<div class="infobox bioInformationArea floating-label-group">
+					<input class="sheet-infoValues editable" name="system.reference" type="text" value="{{data.system.reference}}" data-dtype="String" autocomplete="off" autofocus required />
+					<span class="floating-label">{{localize "wod.labels.trait.reference"}}</span>
+				</div>
+			</div>	
+			
+			{{#if (eq data.system.type "wod.types.combination")}}
+
+				<div class="dialog-area">
+					<div class="clearareaBox">
+						<div class="pullLeft"><i class="icon fa-solid fa-square-plus item-create pointer" title="{{localize 'wod.labels.add.combination'}}" aria-hidden="true" data-type="combination" data-game="vampire"></i></div>
+						<div class="pullLeft sheet-banner-text">{{localize "wod.dialog.power.disciplineneeded"}}</div>								
+					</div>
+					
+					{{#each data.system.property as | item id|}}
+						<div class="clearareaBox bioInformationArea" style="margin-bottom: 10px;">
+							<div class="pullLeft infobox floating-label-group">
+								<input id="combination_name_{{id}}" class="sheet-infoValues {{#if (ne ../locked true)}}editable{{/if}}" type="text" value="{{item.discipline}}" />		
+								<span class="floating-label">{{localize "wod.types.discipline"}}</span>						
+							</div>
+							<div class="pullLeft infobox floating-label-group">
+								<select id="combination_rating_{{id}}" class="sheet-infoValues {{#if (ne ../locked true)}}editable{{/if}}" data-dtype="Number">
+									{{selectOptions ../listData.Level9Value selected=item.value localize=false}}
+								</select>
+								<span class="floating-label">{{localize "wod.labels.power.level"}}</span>
+							</div>
+							{{#if (ne ../locked true)}}
+								<div class="pullLeft pointer">
+									<a class="item-property" 
+										title="{{localize 'wod.dialog.power.savecombination'}}" 
+										data-type="combination" data-game="vampire" data-typeid="{{id}}"><i class="icon fa-solid fa-floppy-disk"></i></a>
+								</div>							
+								<div class="pullLeft pointer">
+									<a class="item-delete" 
+										title="{{localize 'wod.dialog.power.removecombination'}}" 
+										data-type="combination" data-item-id="{{id}}"><i class="icon fa-solid fa-trash-can"></i></a>
+								</div>
+							{{/if}}
+						</div>
+					{{/each}}
+				</div>
+					
+			{{/if}}
+
+			{{> "systems/worldofdarkness/templates/sheets/parts/item_bonus.html"}}
+
+			<!-- dice -->
+			{{#if (ne data.system.type "")}}
+				{{#if (eqAny data.system.type "wod.types.disciplinepower" "wod.types.ritual" "wod.types.combination" "wod.types.gift" "wod.types.rite" "wod.types.edgepower" "wod.types.lorepower" "wod.types.arcanoipower" "wod.types.hekaupower" "wod.types.numinapower" "wod.types.horror" "wod.types.exaltedcharm" "wod.types.exaltedsorcery" "wod.types.charm" "wod.types.power")}}
+					<div class="dialog-area">
+						<div class="infobox">
+							<label class="headlineItem headlineBio splatFont" for="data.isrollable">{{localize "wod.labels.power.rollable"}}</label>
+							<input name="system.isrollable" type="checkbox" {{isChecked data.system.isrollable}} />
+						</div>
+
+						{{#if data.system.isrollable}}
+							{{> "systems/worldofdarkness/templates/sheets/parts/power_rollable.html"}}
+						{{/if}}
+					</div>
+				{{/if}}
+			{{/if}}			
+
+			{{> "systems/worldofdarkness/templates/sheets/parts/power_description.html"}}
+			
+		</section>
+
+	</div>
+
+</form>

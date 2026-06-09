@@ -1,0 +1,54 @@
+:root {
+    --background-input: white;
+}
+
+input.fancyComboBox + div {
+    position: absolute;
+    display: none;
+    background: var(--background-input);    
+    border-top: 0;
+    overflow-y: auto;
+    max-height: 250px;
+    filter: drop-shadow(16px 16px 10px black);
+  }
+  
+input.fancyComboBox + div > div {
+    color:black;      /* general text color */
+    padding: 0 .25rem;
+    line-height: 1.25rem;
+    cursor: pointer;
+}
+
+input.fancyComboBox + div > div.kOptionDelimiter {
+    height: 1px;
+    padding: 0;
+    margin: .5rem .25rem;
+    pointer-events: none;
+}
+
+input.fancyComboBox + div > div.kOptionHeader {
+    pointer-events: none;
+    text-align: center;    
+}
+
+.fancyTextArea {
+    font-family: var(--main-font);
+    font-weight: normal;
+    font-size: 12px;
+    z-index: 1000;
+}
+
+.wod-sheet input.fancyComboBox + div {
+  border: var(--main-full-color);
+}
+
+.wod-sheet input.fancyComboBox + div > div.kOptionHeader {
+  background: var(--main-full-color);
+  color: white;
+}
+
+.wod-sheet input.fancyComboBox + div > div:hover,
+.wod-sheet input.fancyComboBox + div > div.active {
+  background: var(--main-mortal-mid-color);
+  color:white;
+}

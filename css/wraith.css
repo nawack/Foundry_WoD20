@@ -1,0 +1,118 @@
+.wraith:not(.noSplatFont) nav,
+.wraith:not(.noSplatFont) .splatFont,
+.wraithDialog:not(.noSplatFont) .splatFont,
+.wraithItem:not(.noSplatFont) .splatFont {
+	font-family: "wraith", var(--main-font);
+}
+
+.wraithDialog,
+.wraith,
+.wraithItem {
+  --main-full-color: var(--main-wraith-color);
+  --main-mid-color: var(--main-wraith-mid-color);
+  --main-dim-color: var(--main-wraith-dim-color);
+  --color-shadow-primary: var(--main-wraith-color);
+
+  /* Splat-specific font-size defaults (tweak per splat if needed) */
+  --wod-font-xxs: 0.4375rem;   /* 7px */
+  --wod-font-xs: 0.625rem;     /* 10px */
+  --wod-font-sm: 0.75rem;      /* 12px */
+  --wod-font-md: 0.875rem;     /* 14px */
+  --wod-font-base: 1rem;       /* 16px */
+  --wod-font-lg: 1.125rem;     /* 18px */
+  --wod-font-xl: 1.25rem;      /* 20px */
+  --wod-font-xxl: 1.5rem;      /* 24px */
+
+  /* Overrides to preserve current hard-coded sizes in this splat */
+  --wod-font-sheet-headline: 2.5rem; /* 40px (.sheet-headline) */
+  --wod-font-headline-group: 2rem; /* 32px (.headlineGroup) */
+  --wod-font-headline-text: 1.75rem; /* 28px (.headlineText) */
+  --wod-font-headline-list: 1.625rem; /* 26px (.headlineList) */
+  --wod-font-second-headline-tabs: 1.5625rem; /* 25px */
+  --wod-font-headline-row: 1.625rem; /* 26px (.headlineRow) */
+  --wod-font-mainpower-row-namebox: 1.625rem; /* 26px */
+} 
+
+.wraith {
+    --sheet-background-color: var(--wraith-page-background);
+}
+  
+.wraith .modern {  
+    --main-wod-banner: var(--wraith-banner-background);
+    --main-wod-banner-small: var(--wraith-banner-small-background); 
+}
+
+.wraith .sheet-headline:not(.noSplatFont) {
+  font-size: var(--wod-font-sheet-headline);
+}
+
+.wraith .headlineGroup:not(.noSplatFont) {
+  font-size: var(--wod-font-headline-group);
+}
+
+.wraith .headlineText:not(.noSplatFont) {
+  font-size: var(--wod-font-headline-text);
+}
+
+.wraith .headlineList:not(.noSplatFont) {
+  font-size: var(--wod-font-headline-list);
+}
+
+.wraith .secondHeadlineTabs:not(.noSplatFont) {
+  font-size: var(--wod-font-second-headline-tabs);
+}
+
+.wraith .headlineRow:not(.noSplatFont) {
+  font-size: var(--wod-font-headline-row);
+} 
+
+.wraith .icon.collapsible.button {
+  font-size: var(--wod-font-lg);
+}
+
+.wraith .icon {
+  scale: 1.0;
+}
+
+/* START Core */
+
+.wraith .sheet-banner-small {
+  background: var(--main-wod-banner-small);
+  background-size: 90%;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-bottom: 10px; 
+} 
+
+.wraith .total.experienceValue {
+  line-height: 32px;
+}
+
+/* END - Core */
+
+/* START - Death */
+
+.wraith .item-row-area.mainpower-row .power-itemlist .width-namebox {
+    font-size: var(--wod-font-mainpower-row-namebox);
+}
+
+.wraith .fetter .power-dotBox,
+.wraith .passion .power-dotBox {
+  width: 100px;
+}
+
+/* END - Death */
+
+/* SETTINGS */
+
+.wraith .secondHeadlineTabs {
+    width: 25%;
+}
+
+@media all and (max-height : 1024px)
+{
+  .wod-sheet.wraith:not(.minimized) {
+    min-height: 400px;
+    height: 400px;
+  }
+}

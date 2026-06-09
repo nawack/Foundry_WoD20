@@ -1,0 +1,126 @@
+<form class="{{cssClass}} {{object.sheettype}}" autocomplete="off">
+
+    <div class="dialog-area">
+        <div class="headlineGroup splatFont">{{localize "wod.dice.rollof"}} {{object.name}}</div>
+    </div>
+
+    <div class="dialog-area">
+        <div class="infobox headline splatFont">{{localize "wod.dialog.dicepool"}}</div>
+        <div class="infobox">
+            {{object.attributeName}} ({{object.attributeValue}})
+            
+            {{#if (ne object.abilityName "")}}
+                + {{object.abilityName}} ({{object.abilityValue}})
+            {{/if}}
+            
+            {{#if (gt object.bonus 0)}} 
+                + {{object.bonus}}
+            {{/if}}
+        </div>
+
+        {{#if object.hasSpeciality}}
+            <div class="infobox headline splatFont">{{localize "wod.labels.specialty"}}</div>
+            <div class="clearareaBox infobox dialog-checkbox">
+                <div class="pullLeft"><input name="specialty" type="checkbox" {{isChecked object.useSpeciality}} /></div>
+                <div class="pullLeft">{{#if (ne object.specialityText "")}}{{object.specialityText}}{{else}}{{localize "wod.dialog.nonelisted"}}{{/if}}</div>
+            </div>
+        {{/if}}
+
+        <div class="clearareaBox infobox dialog-checkbox">
+            <div class="pullLeft"><input name="useWillpower" type="checkbox" {{isChecked object.useWillpower}} /></div>
+            <div class="pullLeft"><label for="useWillpower" class="dialog-casting-type-label">{{localize "wod.labels.usewillpower"}}</label></div>
+        </div>
+
+        {{!-- TODO: Only legacy actors --}}
+        {{#if (or (eq object.dice1 "custom") (eq object.dice2 "custom"))}}
+            <div class="dialog-area">
+                <div class="infobox centerText">
+                    {{#if (eq config.powerAbilities.length 0)}}
+                        {{localize "wod.dialog.power.nopower"}}
+                    {{/if}}
+                    {{#if (gt config.powerAbilities.length 0)}}
+                    <div class="dialog-secondaryability-buttons">
+                    {{#each config.powerAbilities as |ability key|}}
+                        <button id="secondaryability" class="button fullSplatColor pointer dialog-secondaryability-button {{#if (eq ../object.secondaryabilityid ability._id)}}active{{/if}}" value="{{ability._id}}">{{ability.name}}</button>
+                    {{/each}}
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+        {{/if}}
+
+        {{#if (eq object.type "wod.types.artpower")}}
+            <div class="infobox headline splatFont">{{localize "wod.dialog.power.arttype"}}</div>
+                {{#if (eq object.arttype 'wod.labels.both')}}
+                    <div class="infobox centerText">
+                        <button class="dialog-two-button button fullSplatColor dialog-arttype-button {{isActive object.selectedarttype 'wod.health.chimerical'}}" data-value="wod.health.chimerical">{{localize 'wod.health.chimerical'}}</button>
+                        <button class="dialog-two-button button fullSplatColor dialog-arttype-button {{isActive object.selectedarttype 'wod.types.wyrd'}}" data-value="wod.types.wyrd">{{localize 'wod.types.wyrd'}}</button>
+                    </div>
+                {{else}}
+                    <div class="infobox">{{localize object.arttype}}</div>
+                {{/if}}
+            </div>
+        {{/if}}
+    </div>
+
+    {{#if (eq object.type "wod.types.artpower")}}
+        {{#if (eq object.isUnleashing false)}}
+            <div class="dialog-area">
+                <div class="infobox headline splatFont">{{localize "wod.dialog.power.availrealms"}}</div>
+                <div class="infobox centerText">
+                    {{#each object.selectedRealms as |realm key|}}
+                        <button id="{{realm.label}}" class="button fullSplatColor pointer dialog-realm-button {{#if realm.isselected}}active{{/if}}" value="{{realm._id}}">{{localize realm.label}} ({{realm.value}})</button>                    
+                    {{/each}}
+                </div>
+            </div>
+        {{/if}}
+
+        <div class="clearareaBox dialog-area">
+            {{#if (gt object.maxnightmareDice 2)}}
+                <div class="clearareaBox infobox">
+                    <div class="pullLeft headline splatFont">{{localize "wod.dialog.power.shiftnightmaredice"}}</div>
+                    <div class="pullLeft">
+                        <span class="headlineNormal setting-radiospan"><input type="checkbox" class="setting-radiobuttons" name="select_nightmaredice" value="1" {{isChecked (eq object.nightmareReplace 1)}} /></span>
+                    </div>
+                </div>
+            {{/if}}
+
+            <div class="clearareaBox infobox dialog-checkbox">
+                <div class="pullLeft headline splatFont">{{localize "wod.dialog.power.unleashing"}}</div>
+                <div class="pullLeft">
+                    <input name="isUnleashing" type="checkbox" {{isChecked object.isUnleashing}} />
+                </div>
+            </div> 
+        </div>
+    {{/if}}
+
+    <div class="dialog-area">
+        <div class="headline splatFont">{{localize "wod.labels.difficulty"}}</div>
+        <div class="infobox centerText">
+            
+            {{#numFromLoop config.lowestDifficulty 10}}
+                <button id="difficulty" class="button fullSplatColor pointer dialog-difficulty-button {{isActive ../object.difficulty this}}" value="{{this}}" data-index="{{this}}">{{this}}</button>
+            {{/numFromLoop}}
+        </div>
+    </div>
+
+    <div class="dialog-area">
+        <div class="headline splatFont">{{localize "wod.labels.description"}}</div>
+        <div class="infobox">
+            <div class="textarea">{{{object.description}}}</div>
+        </div>
+    </div>
+
+    <div class="dialog-area">
+        <div class="headline splatFont">{{localize "wod.labels.power.system"}}</div>
+        <div class="infobox">
+            <div class="textarea">{{{object.system}}}</div>
+        </div>            
+    </div>
+
+    <div class="centerText">
+        <button id="actionButton" class="button fullSplatColor pointer actionbutton dialog-two-button">{{localize "wod.dice.roll"}}</button>
+        <button id="closeButton" class="button fullSplatColor pointer closebutton dialog-two-button">{{localize "wod.dialog.close"}}</button>
+    </div>
+
+</form>

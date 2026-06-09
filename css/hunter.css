@@ -1,0 +1,86 @@
+.hunter {
+    --sheet-background-color: var(--hunter-page-background);
+
+    /* Splat-specific font-size defaults (tweak per splat if needed) */
+    --wod-font-xxs: 0.4375rem;   /* 7px */
+    --wod-font-xs: 0.625rem;     /* 10px */
+    --wod-font-md: 0.875rem;     /* 14px */
+    --wod-font-base: 1rem;       /* 16px */
+    --wod-font-lg: 1.125rem;     /* 18px */
+    --wod-font-xl: 1.25rem;      /* 20px */
+    --wod-font-xxl: 1.5rem;      /* 24px */
+
+    /* Overrides to preserve current hard-coded sizes in this splat */
+    --wod-font-sheet-headline: 1.875rem; /* 30px */
+    --wod-font-headline-tabs: 1.75rem; /* 28px (.headlineTabs) */
+    --wod-font-headline-group: 1.75rem; /* 28px (dialog .headlineGroup) */
+    --wod-font-headline: 1.125rem; /* 18px (dialog .headline) */
+    --wod-font-second-headline-tabs: 1.625rem; /* 26px */
+} 
+  
+.hunter .modern {  
+    --main-wod-banner: var(--hunter-banner-background);
+    --main-wod-banner-small: var(--hunter-banner-small-background); 
+}
+
+.hunterDialog,
+.hunter,
+.hunterItem {
+  --main-full-color: var(--main-hunter-color);
+  --main-mid-color: var(--main-hunter-mid-color);
+  --main-dim-color: var(--main-hunter-dim-color);
+  --color-shadow-primary: var(--main-hunter-color);
+}
+
+.hunter:not(.noSplatFont) nav,
+.hunter:not(.noSplatFont) .splatFont,
+.hunterDialog:not(.noSplatFont) .splatFont,
+.hunterItem:not(.noSplatFont) .splatFont {
+	font-family: "hunter", var(--main-font);
+}
+
+.hunter:not(.noSplatFont) .sheet-headline {
+  font-size: var(--wod-font-sheet-headline);
+}
+
+.hunter:not(.noSplatFont) .headlineTabs {
+  font-size: var(--wod-font-headline-tabs);
+  line-height: 28px;
+}
+
+.hunterDialog:not(.noSplatFont) .headlineGroup {
+  font-size: var(--wod-font-headline-group);
+}
+
+.hunterDialog:not(.noSplatFont) .headline {
+  font-size: var(--wod-font-headline);
+}
+
+.hunter:not(.noSplatFont) .headlineList {
+  font-size: var(--wod-font-lg);
+  font-weight: normal;
+}
+
+.hunter:not(.noSplatFont) .sheet-headline {
+  font-size: var(--wod-font-sheet-headline);
+} 
+
+/* CORE */
+
+.hunter .sheet-banner-small {
+  background-size: 95%;
+}
+
+/* CORE end */
+
+/* SETTINGS */
+
+.hunter:not(.noSplatFont) .secondHeadlineTabs {
+  font-size: var(--wod-font-second-headline-tabs);
+}
+
+.hunter .secondHeadlineTabs {
+  width: 25%;
+}
+
+/* SETTINGS end */

@@ -1,0 +1,31 @@
+<!-- description -->
+<div class="dialog-area">			
+    <div class="clearareaBox">
+        <div class="headlineItem headlineBio splatFont">{{localize "wod.labels.description"}}</div>
+    </div>		
+    <div class="infobox">
+        {{#if locked}}
+            <div class="headlineNormal textarea">{{{data.system.description}}}</div>					
+        {{else}}
+            {{editor data.system.description target="system.description" engine="prosemirror" button=false owner=owner editable=true}}
+        {{/if}}
+    </div>
+</div>
+
+<!-- system -->
+{{#if (ne data.system.type "wod.types.charm")}}
+    {{#if (ne data.system.type "wod.types.power")}}
+        <div class="dialog-area">			
+            <div class="clearareaBox">
+                <div class="headlineItem headlineBio splatFont">{{localize "wod.labels.power.system"}}</div>
+            </div>		
+            <div class="infobox">
+                {{#if locked}}
+                    <div class="headlineNormal textarea">{{{data.system.details}}}</div>					
+                {{else}}
+                    {{editor data.system.details target="system.details" engine="prosemirror" button=false owner=owner editable=true}}
+                {{/if}}
+            </div>
+        </div>
+    {{/if}}
+{{/if}}

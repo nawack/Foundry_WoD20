@@ -1,0 +1,63 @@
+{{#if (ne (checkSystemsetting "viewBiotabPermission") "mini")}}
+
+    <div class="pullLeft" style="display: flex; width: 320px;">
+        <div class="pullLeft area-box">
+            <div class="bioInformationArea floating-label-group">
+                {{#if locked}}
+                    <input class="sheet-infoValues" type="text" value="{{localize data.system.breed}}" autocomplete="off" autofocus required />
+                {{else}}
+                    <select class="sheet-infoValues editable" name="system.breed" data-type="{{config.sheettype.werewolf}}" data-name="data.system.breed" data-dtype="String">
+                        {{selectOptions listData.BreedList selected=data.system.breed localize=false}}
+                    </select>
+                {{/if}}
+                <span class="floating-label">{{localize "wod.bio.breed"}}</span>
+            </div>
+
+            <div class="bioInformationArea floating-label-group">
+                {{#if locked}}
+                    <input class="sheet-infoValues" type="text" value="{{localize data.system.auspice}}" autocomplete="off" autofocus required />
+                {{else}}
+                    <select class="sheet-infoValues editable" name="system.auspice" data-type="{{config.sheettype.werewolf}}" data-name="data.system.auspice" data-dtype="String">
+                        {{selectOptions listData.AuspiceList selected=data.system.auspice localize=false}}
+                    </select>                    
+                {{/if}}
+                <span class="floating-label">{{localize "wod.bio.auspice"}}</span>
+            </div>
+
+            <div class="bioInformationArea floating-label-group">
+                {{#if locked}}                
+                    <input class="sheet-infoValues" type="text" value="{{#if (eq actor.system.tribe 'custom')}}{{actor.system.custom.tribe}}{{else}}{{localize data.system.tribe}}{{/if}}" data-dtype="String" autofocus required />
+                {{else}}
+                    <select class="sheet-infoValues {{#if (eq actor.system.tribe 'custom')}}edit-property{{/if}} editable" name="system.tribe" data-type="{{config.sheettype.werewolf}}" data-name="data.system.tribe" data-dtype="String">
+                        {{selectOptions listData.TribeList selected=data.system.tribe localize=false}}
+                    </select>
+                    {{#if (eq actor.system.tribe "custom")}}
+                        <a class="pullLeft item-edit" title="{{localize 'wod.labels.customizetribe'}}" data-type="Bio" data-name="{{localize 'wod.bio.tribe'}}" data-item-id="tribe" data-custom="{{actor.system.custom.tribe}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                    {{/if}}
+                {{/if}} 
+                <span class="floating-label">{{localize "wod.bio.tribe"}}</span>        
+            </div>      
+
+            <div class="bioInformationArea floating-label-group">
+                {{#if locked}}
+                    <input class="sheet-infoValues" type="text" value="{{data.system.packname}}" autocomplete="off" autofocus required />
+                {{else}}
+                    <input class="sheet-infoValues editable" name="system.packname" type="text" value="{{data.system.packname}}" data-name="data.system.packname" data-dtype="String" autocomplete="off" autofocus required />
+                {{/if}}
+                <span class="floating-label">{{localize "wod.bio.packname"}}</span>
+            </div>
+
+            <div class="bioInformationArea floating-label-group">
+                {{#if locked}}
+                    <input class="sheet-infoValues" type="text" value="{{data.system.packtotem}}" autocomplete="off" autofocus required />
+                {{else}}
+                    <input class="sheet-infoValues editable" name="system.packtotem" type="text" value="{{data.system.packtotem}}" data-name="data.system.packtotem" data-dtype="String" autocomplete="off" autofocus required />
+                {{/if}}        
+                <span class="floating-label">{{localize "wod.bio.packtotem"}}</span>
+            </div>
+
+        </div>    
+
+    </div>
+
+{{/if}}
