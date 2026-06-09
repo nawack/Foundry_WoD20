@@ -223,6 +223,9 @@ export async function DiceRoller(diceRoll) {
 				else if (dice.result >= difficulty) {
 					rolledAnySuccesses = true;
 					success += 1;
+					if (dice.result >= difficulty + 5) {
+						success += 1;
+					}
 				}
 				else if ((dice.result == 1) && (actor !== undefined)) {
 					if ((CONFIG.worldofdarkness.usehandleOnes) && (canBotch) && 
